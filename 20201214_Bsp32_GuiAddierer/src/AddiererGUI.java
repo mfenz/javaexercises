@@ -13,6 +13,11 @@ public class AddiererGUI extends JFrame {
 
     // Konstruktor
     public AddiererGUI(){
+        // Beendet das Programm wenn "x" geklickt wurde
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
+        // Titel des Fensters
+        setTitle("Addierer");
+
         jPanel = new JPanel();
         jPanel.setLayout(new GridLayout(5, 1));
         tfNumber1 = new JTextField();
