@@ -1,5 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class AddiererGUI extends JFrame {
 
@@ -25,6 +27,19 @@ public class AddiererGUI extends JFrame {
         lbPlus = new JLabel("+");
         lbResult = new JLabel();
         btCalculateResult = new JButton("=");
+        btCalculateResult.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                String number1 = tfNumber1.getText();
+                float n1 = Float.parseFloat(number1);
+                String number2 = tfNumber2.getText();
+                float n2 = Float.parseFloat(number2);
+                float result = n1 + n2;
+                // Schreibt das Ergebnis auf lbResult
+                // mit der setText(String text) Methode!
+                lbResult.setText(String.valueOf(result));
+            }
+        });
 
         jPanel.add(tfNumber1);
         jPanel.add(lbPlus);
