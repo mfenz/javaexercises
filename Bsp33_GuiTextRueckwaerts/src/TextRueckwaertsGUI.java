@@ -33,7 +33,7 @@ public class TextRueckwaertsGUI extends JFrame {
         btAction.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                // eingegebene Text holen
+                // eingegebenen Text holen
                 String eingabe = tfTextEingabe.getText();
                 // String umdrehen. StringBuilder verwenden um
                 // effizient Strings "zusammenzubauen"!
