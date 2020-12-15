@@ -3,23 +3,23 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class AddiererGUI extends JFrame {
+public class RechnerGUI extends JFrame {
 
     // Instanzvariable
     private JPanel jPanel;
     private JTextField tfNumber1;
     private JTextField tfNumber2;
     private JLabel lbPlus;
-
-    private JPanel jpRechenarten;
-    private JRadioButton rbPlus;
-    private JRadioButton rbMinus;
-
     private JLabel lbResult;
     private JButton btCalculateResult;
 
+    private JPanel jpRechenOperationen;
+    private JRadioButton rbPlus;
+    private JRadioButton rbMinus;
+    private JRadioButton rbMulti;
+
     // Konstruktor
-    public AddiererGUI(){
+    public RechnerGUI(){
         // Beendet das Programm wenn "x" geklickt wurde
         setDefaultCloseOperation(EXIT_ON_CLOSE);
         // Titel des Fensters
@@ -30,17 +30,18 @@ public class AddiererGUI extends JFrame {
         tfNumber1 = new JTextField();
         tfNumber2 = new JTextField();
 
-        // JPanel zeigt die Rechenarten an
-        jpRechenarten = new JPanel();
-        jpRechenarten.setLayout(new GridLayout(1, 2));
+        jpRechenOperationen = new JPanel();
+        jpRechenOperationen.setLayout(new GridLayout(1, 3));
+
         rbPlus = new JRadioButton("+");
         rbMinus = new JRadioButton("-");
-        // fügt Radiobuttons in jpRechenarten ein
-        jpRechenarten.add(rbPlus);
-        jpRechenarten.add(rbMinus);
+        rbMulti = new JRadioButton("*");
+        jpRechenOperationen.add(rbPlus);
+        jpRechenOperationen.add(rbMinus);
+        jpRechenOperationen.add(rbMulti);
 
-        //lbPlus = new JLabel("+");
 
+        lbPlus = new JLabel("+");
         lbResult = new JLabel();
         btCalculateResult = new JButton("=");
         btCalculateResult.addActionListener(new ActionListener() {
@@ -58,7 +59,8 @@ public class AddiererGUI extends JFrame {
         });
 
         jPanel.add(tfNumber1);
-        jPanel.add(jpRechenarten);
+        //jPanel.add(lbPlus);
+        jPanel.add(jpRechenOperationen);
         jPanel.add(tfNumber2);
         jPanel.add(btCalculateResult);
         jPanel.add(lbResult);
