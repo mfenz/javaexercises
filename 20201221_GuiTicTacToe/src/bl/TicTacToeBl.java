@@ -34,6 +34,19 @@ public class TicTacToeBl {
     }
 
     private int checkWinner(){
+        // Zeilen prüfen
+        for(int row = 0; row < board.length; ++row){
+            int player = board[row][0];
+            for(int col = 0; col < board[row].length; ++col){
+                if(player != board[row][col]){
+                    player = 0;
+                    break;
+                }
+            }
+            if(player > 0){
+                return player;
+            }
+        }
         return 0;
     }
 
