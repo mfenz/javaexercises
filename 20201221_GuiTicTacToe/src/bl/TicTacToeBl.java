@@ -56,5 +56,8 @@ public class TicTacToeBl {
         return board[row][col];
     }
 
+    public int getWinner(){
+        return winner;
+    }
 
 }

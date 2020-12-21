@@ -79,6 +79,8 @@ public class TicTacToeGui extends JFrame {
 
     private String getUserName(int userNumber){
         switch (userNumber){
+            case -1: return "draw";
+            case 0: return "";
             case 1: return "X";
             case 2: return "O";
             default: return "undefined";
@@ -96,6 +98,14 @@ public class TicTacToeGui extends JFrame {
             // Spielzug durchführen
             bl.move(row, col);
             updateUi();
+
+            // prüfen ob es Gewinner gibt!
+            if(bl.getWinner() != 0){
+                int winner = bl.getWinner();
+                String winnerName = getUserName(winner);
+                JOptionPane.showMessageDialog(TicTacToeGui.this,
+                        "Gewonnen hat " + winnerName + "! Gratulation!");
+            }
         }
     }
 }
