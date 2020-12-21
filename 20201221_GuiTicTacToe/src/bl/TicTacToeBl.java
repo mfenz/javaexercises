@@ -47,6 +47,13 @@ public class TicTacToeBl {
                 return player;
             }
         }
+        // Spalten prüfen
+
+        // Diagonale prüfen
+        
+        // unentschieden prüfen (-1)
+
+        // 0 zurückgeben wenn noch niemand gewonnen hat
         return 0;
     }
 
