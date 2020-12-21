@@ -4,6 +4,8 @@ import bl.TicTacToeBl;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 
 public class TicTacToeGui extends JFrame {
 
@@ -28,13 +30,37 @@ public class TicTacToeGui extends JFrame {
         jpUser.setLayout(new GridLayout(1, 2));
         jpBoard.setLayout(new GridLayout(bl.getBoardSize(), bl.getBoardSize()));
 
+        // User Info
         lbUserInfo = new JLabel("Player:");
         lbUserName = new JLabel("");
         jpUser.add(lbUserInfo);
         jpUser.add(lbUserName);
-        jpMain.add(jpUser, BorderLayout.NORTH);
+        jpMain.add(jpUser, BorderLayout.PAGE_START);
 
+        // Spielfeld
+        TicTacToeCellActionListener ticTacToeCellActionListener = new TicTacToeCellActionListener();
+        for(int i = 0; i < bl.getBoardSize(); ++i){
+            for(int j = 0; j < bl.getBoardSize(); ++j){
+                // Neuen Button erstellen
+                JButton btCell = new JButton();
+                btCell.setName(i+","+j);
+                btCell.addActionListener(ticTacToeCellActionListener);
+                jpBoard.add(btCell);
+            }
+        }
+        jpMain.add(jpBoard, BorderLayout.CENTER);
         this.getContentPane().add(jpMain);
         pack();
+    }
+
+    private final class TicTacToeCellActionListener implements ActionListener {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JButton btCell = (JButton)e.getSource();
+            String name = btCell.getName();
+            String[] nameSplit = name.split(",");
+            int row = Integer.parseInt(nameSplit[0]);
+            int col = Integer.parseInt(nameSplit[1]);
+        }
     }
 }
