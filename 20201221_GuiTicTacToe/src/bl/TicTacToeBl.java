@@ -4,7 +4,7 @@ public class TicTacToeBl {
 
     // 0: nicht gesetzt, 1: Spieler 1, 2: Spieler 2
     private int[][] board;
-    
+
     // 1: Spieler 1, 2: Spieler 2
     private int currentPlayer = 1;
 
@@ -35,6 +35,9 @@ public class TicTacToeBl {
         }
     }
 
+    public int getCurrentPlayer(){
+        return currentPlayer;
+    }
 
 
 }
