@@ -39,5 +39,9 @@ public class TicTacToeBl {
         return currentPlayer;
     }
 
+    public int getBoardSize(){
+        return board.length;
+    }
+
 
 }
