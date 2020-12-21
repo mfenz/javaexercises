@@ -52,5 +52,9 @@ public class TicTacToeBl {
         return board.length;
     }
 
+    public int getBoardPosition(int row, int col){
+        return board[row][col];
+    }
+
 
 }

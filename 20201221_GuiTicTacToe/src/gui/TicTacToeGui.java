@@ -62,6 +62,14 @@ public class TicTacToeGui extends JFrame {
 
     private void updateUi(){
         // Buttons
+        for(int i = 0; i < btCells.length; ++i){
+            for(int j = 0; j < btCells[i].length; ++j){
+                JButton btCell = btCells[i][j];
+                int field = bl.getBoardPosition(i, j);
+                String cellText = getUserName(field);
+                btCell.setText(cellText);
+            }
+        }
 
         // Current Player
         int currentPlayer = bl.getCurrentPlayer();
