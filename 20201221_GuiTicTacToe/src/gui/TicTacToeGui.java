@@ -21,6 +21,8 @@ public class TicTacToeGui extends JFrame {
     // X oder O
     private JLabel lbUserName;
 
+    private JButton[][] btCells;
+
     public TicTacToeGui(TicTacToeBl bl){
         this.bl = bl;
         setTitle("Tic Tac Toe");
@@ -38,6 +40,7 @@ public class TicTacToeGui extends JFrame {
         jpMain.add(jpUser, BorderLayout.PAGE_START);
 
         // Spielfeld
+        btCells = new JButton[bl.getBoardSize()][bl.getBoardSize()];
         TicTacToeCellActionListener ticTacToeCellActionListener = new TicTacToeCellActionListener();
         for(int i = 0; i < bl.getBoardSize(); ++i){
             for(int j = 0; j < bl.getBoardSize(); ++j){
@@ -46,6 +49,8 @@ public class TicTacToeGui extends JFrame {
                 btCell.setName(i+","+j);
                 btCell.addActionListener(ticTacToeCellActionListener);
                 jpBoard.add(btCell);
+                // Button ins Array einfügen (für UI updates)
+                btCells[i][j] = btCell;
             }
         }
         jpMain.add(jpBoard, BorderLayout.CENTER);
@@ -56,9 +61,20 @@ public class TicTacToeGui extends JFrame {
     }
 
     private void updateUi(){
+        // Buttons
+
         // Current Player
         int currentPlayer = bl.getCurrentPlayer();
-        lbUserName.setText(String.valueOf(currentPlayer));
+        String userName = getUserName(currentPlayer);
+        lbUserName.setText(userName);
+    }
+
+    private String getUserName(int userNumber){
+        switch (userNumber){
+            case 1: return "X";
+            case 2: return "O";
+            default: return "undefined";
+        }
     }
 
     private final class TicTacToeCellActionListener implements ActionListener {
