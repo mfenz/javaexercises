@@ -51,6 +51,14 @@ public class TicTacToeGui extends JFrame {
         jpMain.add(jpBoard, BorderLayout.CENTER);
         this.getContentPane().add(jpMain);
         pack();
+
+        updateUi();
+    }
+
+    private void updateUi(){
+        // Current Player
+        int currentPlayer = bl.getCurrentPlayer();
+        lbUserName.setText(String.valueOf(currentPlayer));
     }
 
     private final class TicTacToeCellActionListener implements ActionListener {
@@ -61,6 +69,9 @@ public class TicTacToeGui extends JFrame {
             String[] nameSplit = name.split(",");
             int row = Integer.parseInt(nameSplit[0]);
             int col = Integer.parseInt(nameSplit[1]);
+            // Spielzug durchführen
+            bl.move(row, col);
+            updateUi();
         }
     }
 }

@@ -8,6 +8,9 @@ public class TicTacToeBl {
     // 1: Spieler 1, 2: Spieler 2
     private int currentPlayer = 1;
 
+    // -1: unentschieden, 0: noch niemand, 1: Spieler 1, 2: Spieler 2
+    private int winner = 0;
+
     public TicTacToeBl(int boardSize){
         board = new int[boardSize][boardSize];
     }
@@ -18,9 +21,15 @@ public class TicTacToeBl {
      * @param col
      */
     public void move(int row, int col){
-        // Spielzug durchführen
-
-        checkWinner();
+        if(board[row][col] != 0){
+            // Feld ist bereits belegt!
+            return;
+        }
+        // Spielfeld setzen
+        board[row][col] = currentPlayer;
+        // Gewinner ermitteln
+        winner = checkWinner();
+        // currentPlayer ändern
         nextPlayer();
     }
 
