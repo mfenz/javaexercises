@@ -25,7 +25,10 @@ public class WeihnachtenGUI extends JFrame {
         ActionListener listener = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                for(int i = 0; i < drawables.size(); ++i){
+                    drawables.get(i).move();
+                }
+                repaint();
             }
         };
         Timer timer = new Timer(50, listener);
