@@ -15,6 +15,11 @@ public class WeihnachtenPanel extends JPanel {
     }
 
     @Override
+    public Dimension getPreferredSize() {
+        return new Dimension(screenWidth, screenHeight);
+    }
+
+    @Override
     public void paint(Graphics g) {
         super.paintComponents(g);
         Graphics2D g2d = (Graphics2D)g;

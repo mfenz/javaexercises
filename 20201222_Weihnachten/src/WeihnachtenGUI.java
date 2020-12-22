@@ -23,9 +23,10 @@ public class WeihnachtenGUI extends JFrame {
         Tree tree = new Tree(WIDTH, HEIGHT);
         drawables.add(tree);
 
-        Snowflake snowflake = new Snowflake(WIDTH, HEIGHT);
-        drawables.add(snowflake);
-
+        for(int i = 0; i < 1000; ++i){
+            Snowflake snowflake = new Snowflake(WIDTH, HEIGHT);
+            drawables.add(snowflake);
+        }
         ActionListener listener = new AbstractAction() {
             @Override
             public void actionPerformed(ActionEvent e) {
@@ -35,7 +36,7 @@ public class WeihnachtenGUI extends JFrame {
                 panel.repaint();
             }
         };
-        Timer timer = new Timer(50, listener);
+        Timer timer = new Timer(10, listener);
         timer.start();
 
         this.getContentPane().add(panel);
