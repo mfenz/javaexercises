@@ -50,7 +50,7 @@ public class TicTacToeBl {
         // Spalten prüfen
 
         // Diagonale prüfen
-        
+
         // unentschieden prüfen (-1)
 
         // 0 zurückgeben wenn noch niemand gewonnen hat

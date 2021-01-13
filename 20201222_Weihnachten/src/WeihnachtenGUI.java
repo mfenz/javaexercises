@@ -23,7 +23,7 @@ public class WeihnachtenGUI extends JFrame {
         Tree tree = new Tree(WIDTH, HEIGHT);
         drawables.add(tree);
 
-        for(int i = 0; i < 1000; ++i){
+        for(int i = 0; i < 500; ++i){
             Snowflake snowflake = new Snowflake(WIDTH, HEIGHT);
             drawables.add(snowflake);
         }
