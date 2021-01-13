@@ -13,8 +13,14 @@ public class Kalender {
         System.out.println(startPlus1 + " " + dayOfWeekPlus1);*/
 
         LocalDate day = LocalDate.of(2021, 1, 1);
-        while (day.getMonthValue() == 1){
-            System.out.println(day);
+        int dayDifference = day.getDayOfWeek().getValue() - 1;
+        day = day.minusDays(dayDifference);
+        while (day.getMonthValue() != 2){
+            System.out.printf("%2d", day.getDayOfMonth());
+            System.out.print(" | ");
+            if(day.getDayOfWeek().getValue() == 7){
+                System.out.println();
+            }
             day = day.plusDays(1);
         }
     }
