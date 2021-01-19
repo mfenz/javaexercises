@@ -39,9 +39,12 @@ public class Schleifen {
 
         // mindestens 6 Buchstaben, @ Zeichen muss vorkommen
         Scanner scanner = new Scanner(System.in);
-        String eingabe;
+        String eingabe = null;
         int versuche = 0;
         do {
+            if(eingabe != null){
+                System.out.println("Falsche Eingabe!");
+            }
             System.out.println("Bitte das Passwort eingeben (mind. 6 Zeichen, und @ Zeichen)");
             eingabe = scanner.nextLine();
             versuche++;
