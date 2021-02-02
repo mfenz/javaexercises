@@ -1,7 +1,8 @@
 public class FindeDenStringTest {
     public static void main(String[] args){
+        //FindeDenStringTest.testen(); --> wenn Methode static wäre!
         FindeDenStringTest test = new FindeDenStringTest();
-        test.testen();
+        test.testen(); // Punkt-Operator um Methode testen() auszuführen
     }
 
     public void testen(){
