@@ -1,7 +1,5 @@
 public class FindeDenString {
     // Instanzvariablen
-    // substring(1,3)
-    // abcdefgh
     private String text;
     private char search;
 
