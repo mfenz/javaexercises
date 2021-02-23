@@ -10,6 +10,7 @@ public class Textdiagramm {
 
     // Methode
     public void printTextdiagramm(){
+        // wird benötigt um Zufallszahlen zu erzeugen
         Random random = new Random();
 
         for(int zeile = 0; zeile < seitenlaenge; zeile++){
@@ -21,8 +22,14 @@ public class Textdiagramm {
                     System.out.print(" CODE ");
                 } else {
                     // Random Zahl generieren: https://stackoverflow.com/a/5271613
-                    int randomZahl = random.nextInt(9999-1000)+1000;
-                    System.out.printf(" %d ", randomZahl);
+//                    int randomZahl = random.nextInt(9999-1000)+1000;
+//                    System.out.printf(" %d ", randomZahl);
+                    System.out.print(" ");
+                    for(int i = 0; i < 4; i++){
+                        char x = randomChar();
+                        System.out.printf("%c", x);
+                    }
+                    System.out.print(" ");
                 }
             }
 
@@ -30,4 +37,27 @@ public class Textdiagramm {
             System.out.println("|");
         }
     }
+
+    private char randomChar(){
+        Random random = new Random();
+        if((random.nextInt(2-0)+0) == 0){
+            return randomCharLowercase();
+        } else {
+            return randomCharUppercase();
+        }
+    }
+
+    private char randomCharLowercase(){
+        Random random = new Random();
+        char x = (char) (random.nextInt(122-97) + 97);
+        return x;
+    }
+
+    private char randomCharUppercase(){
+        Random random = new Random();
+        char x = (char) (random.nextInt(90-65) + 65);
+        return x;
+    }
+
+
 }
