@@ -51,6 +51,6 @@ public class Schneckenrennen {
     }
 
     public void displayWinner(Schnecke winner){
-        
+
     }
 }
