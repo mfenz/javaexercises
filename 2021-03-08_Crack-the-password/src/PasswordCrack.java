@@ -1,21 +1,38 @@
 public class PasswordCrack {
-    public static void main(String[] args) {
-        String passwort = "zzzz";
 
-        int length = 1;
+    private static String passwort = "123456";
+    private static long counter = 0;
 
-        boolean success = false;
-        char []chars;
-        while(!success){
-            chars = new char[length];
-            for(int i = 0; i < length; i++){
-
+    private static void zeichen(String thisString, int thisDepth, int maxDepth) throws InterruptedException {
+        if(thisDepth == maxDepth){
+            return;
+        }
+        char x = 33;
+        while (x < 127){
+            String s = thisString + x;
+            //System.out.println(s);
+            counter++;
+            if(counter % 1000000 == 0){
+                System.out.printf("counter=%d\n", counter);
             }
+            if(s.equals(passwort)){
+                System.out.println("Passwort gefunden! " + s);
+                System.exit(0);
+            }
+//            Thread.sleep(50);
+            int td = thisDepth + 1;
+            zeichen(s, td, maxDepth);
+            x++;
+        }
+    }
+
+    public static void main(String[] args) throws InterruptedException {
+        int length = 1;
+        boolean success = false;
+        while(!success){
+            zeichen("", 0, length);
             length++;
         }
-
-
-
 
 //        int counter = 0;
 //        for(char a = 33; a <= 126; a++){
