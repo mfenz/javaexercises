@@ -1,14 +1,12 @@
 public class Pyramide {
     // Instanzvariable
     private int hoehe;
-
     /**
      * Konstruktor
      */
     public Pyramide(int hoehe){
         this.hoehe = hoehe;
     }
-
     /**
      * Ausgabe der Pyramide
      */
