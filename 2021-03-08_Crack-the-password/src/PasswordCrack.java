@@ -8,13 +8,15 @@ public class PasswordCrack {
             return;
         }
         char x = 33;
+//        StringBuilder sb = new StringBuilder(thisString);
         while (x < 127){
+//            sb.append(x);
             String s = thisString + x;
             //System.out.println(s);
-            counter++;
-            if(counter % 1000000 == 0){
-                System.out.printf("counter=%d\n", counter);
-            }
+//            counter++;
+//            if(counter % 90000000 == 0){
+//                System.out.printf("counter=%d %s\n", counter, s);
+//            }
             if(s.equals(passwort)){
                 System.out.println("Passwort gefunden! " + s);
                 System.exit(0);
