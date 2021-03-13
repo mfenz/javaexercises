@@ -95,6 +95,8 @@ public class UserVerwaltung {
             ps.setString(2, user.getName());
             // Query ausführen
             ps.executeUpdate();
+            // Releases this Statement object's database and JDBC resources
+            ps.close();
         } catch (SQLException ex) {
             System.out.println("Fehler beim Einfügen des User: " + ex.getMessage());
             ex.printStackTrace();
@@ -118,6 +120,8 @@ public class UserVerwaltung {
             // user in result-Liste einfügen
             result.add(user);
         }
+        // Releases this Statement object's database and JDBC resources
+        ps.close();
         // Liste mit Resultaten zurückgeben
         return result;
     }
@@ -135,8 +139,10 @@ public class UserVerwaltung {
             String name = resultSet.getString("name");
             // Daraus ein User-Objekt erstellen
             User user = new User(id, name);
+            ps.close();
             return Optional.of(user);
         }
+        ps.close();
         // falls nichts mit dieser ID gefunden wurde
         return Optional.empty();
     }
