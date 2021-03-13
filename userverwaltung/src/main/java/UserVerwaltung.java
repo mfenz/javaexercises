@@ -128,8 +128,6 @@ public class UserVerwaltung {
         ps.setInt(1, userId);
         // Query ausführen und Resultat erhalten
         ResultSet resultSet = ps.executeQuery();
-        // Liste anlegen (Resultate später als Objekt hier einfügen)
-        List<User> result = new ArrayList<>();
         // Zeile für Zeile: solange es ein "next" gibt ...
         while (resultSet.next()){
             // Einzelne Werte vom Datensatz herausholen
@@ -137,10 +135,9 @@ public class UserVerwaltung {
             String name = resultSet.getString("name");
             // Daraus ein User-Objekt erstellen
             User user = new User(id, name);
-            // user in result-Liste einfügen
             return Optional.of(user);
         }
-        // Liste mit Resultaten zurückgeben
+        // falls nichts mit dieser ID gefunden wurde
         return Optional.empty();
     }
 
