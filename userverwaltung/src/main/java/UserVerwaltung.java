@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 import java.util.Random;
 
 public class UserVerwaltung {
@@ -69,6 +70,19 @@ public class UserVerwaltung {
             ex.printStackTrace();
         }
 
+        // User anhand der ID in der Datenbank finden
+        try {
+            int searchUserId = user.getId();
+            Optional<User> optionalUser = findUser(searchUserId);
+            if(optionalUser.isPresent()){
+                System.out.println("User gefunden:");
+                print(optionalUser.get());
+            } else {
+                System.out.println("User nicht gefunden");
+            }
+        } catch (SQLException ex) {
+            System.out.println("Fehler beim Laden von einzelnen User: " + ex.getMessage());
+        }
     }
 
     private void insertUser(User user){
@@ -106,6 +120,28 @@ public class UserVerwaltung {
         }
         // Liste mit Resultaten zurückgeben
         return result;
+    }
+
+    private Optional<User> findUser(int userId) throws SQLException {
+        PreparedStatement ps = connection
+                .prepareStatement("SELECT id, name FROM user WHERE id = ?");
+        ps.setInt(1, userId);
+        // Query ausführen und Resultat erhalten
+        ResultSet resultSet = ps.executeQuery();
+        // Liste anlegen (Resultate später als Objekt hier einfügen)
+        List<User> result = new ArrayList<>();
+        // Zeile für Zeile: solange es ein "next" gibt ...
+        while (resultSet.next()){
+            // Einzelne Werte vom Datensatz herausholen
+            int id = resultSet.getInt("id");
+            String name = resultSet.getString("name");
+            // Daraus ein User-Objekt erstellen
+            User user = new User(id, name);
+            // user in result-Liste einfügen
+            return Optional.of(user);
+        }
+        // Liste mit Resultaten zurückgeben
+        return Optional.empty();
     }
 
     private void print(User user){
