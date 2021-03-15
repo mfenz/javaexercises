@@ -16,6 +16,8 @@ public class UserVerwaltung {
         // DB-Connection erstellen
         userVerwaltung.initConnection();
 
+        userVerwaltung.createDatabase();
+
         // User einfügen und auslesen
         userVerwaltung.test();
 
@@ -27,7 +29,7 @@ public class UserVerwaltung {
 
     private void initConnection() {
         MysqlDataSource dataSource = new MysqlDataSource();
-        dataSource.setDatabaseName("cb");
+//        dataSource.setDatabaseName("db2");
         dataSource.setUser("root");
         dataSource.setPassword("");
         dataSource.setServerName("localhost");
@@ -49,6 +51,19 @@ public class UserVerwaltung {
         } catch (SQLException ex) {
             System.out.println("Fehler bei DB-Connection close: " + ex.getMessage());
             ex.printStackTrace();
+        }
+    }
+
+    private void createDatabase(){
+        try {
+            PreparedStatement ps = connection.prepareStatement(
+                    "CREATE DATABASE IF NOT EXISTS db3"
+            );
+            ps.execute();
+            ps.close();
+            connection.setCatalog("db3");
+        } catch (SQLException ex){
+            System.out.println("Create database error: " + ex.getMessage());
         }
     }
 

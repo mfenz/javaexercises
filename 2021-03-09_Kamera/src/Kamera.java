@@ -1,7 +1,9 @@
 public class Kamera {
+    // Instanzvariablen
     private String herstellerName;
     private String modellName;
     private Objektiv objektiv;
+    private int counter;
 
     public Kamera(String herstellerName, String modellName, Objektiv objektiv) {
         this.herstellerName = herstellerName;
@@ -11,12 +13,20 @@ public class Kamera {
 
     public void printKameraInfo() {
         System.out
-                .printf("Fotografieren mit der Kamera %s %s und dem Objektiv %s\n",
-                        herstellerName, modellName, objektiv.getHerstellerName());
+                .printf("Fotografieren mit der Kamera %s %s und dem Objektiv " +
+                                "%s\n",
+                        herstellerName, modellName,
+                        objektiv.getHerstellerName());
     }
 
     public void fotografieren() {
-
+        System.out
+                .printf("Fotografieren mit der Kamera %s %s und dem Objektiv " +
+                                "%s\n",
+                        herstellerName, modellName,
+                        objektiv.getHerstellerName());
+        counter += 1;
+        System.out.printf("IMG_%d.jpg \n", counter);
     }
 
     public String getHerstellerName() {
