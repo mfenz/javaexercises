@@ -1,10 +1,13 @@
 package com.autoverkauf.konsole.model;
 
+import java.math.BigDecimal;
+
 public class Auto {
     private String marke;
     private String modell;
     private int baujahr;
     private float preis;
+//    private BigDecimal preis;
 
     public Auto(String marke, String modell, int baujahr, float preis){
         this.marke = marke;
