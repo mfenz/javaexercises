@@ -14,6 +14,7 @@ public class Autoverkauf {
         while (true){
             System.out.println("add - Neues Auto hinzufügen; " +
                     "list - Alle Autos anzeigen; " +
+                    "filter - Autos nach Marke filtern;" +
                     "exit - Programm beenden");
             System.out.print("Eingabe: ");
             String input = scanner.nextLine();
@@ -21,6 +22,7 @@ public class Autoverkauf {
             switch (input){
                 case "add": bl.addAuto(); break;
                 case "list": bl.listAutos(); break;
+                case "filter": bl.filterAutos(); break;
                 case "exit": System.exit(0); break;
                 default:
                     System.out.printf("Eingabe \"%s\" wurde nicht erkannt. %n", input);

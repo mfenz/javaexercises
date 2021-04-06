@@ -50,6 +50,41 @@ public class AutoverkaufBl {
         }
     }
 
+    public void filterAutos(){
+        System.out.println("--- Autos filtern ---");
+        System.out.println("Wonach filter? marke, modell, baujahr, preis");
+        String input = scanner.nextLine();
+        switch (input){
+            case "marke": filterMarke(); break;
+            case "baujahr": filterBaujahr(); break;
+        }
+    }
+
+    private void filterMarke(){
+        System.out.println("Marke eingeben:");
+        String marke = scanner.nextLine();
+        for(Auto auto : autos){
+            if(auto.getMarke().equalsIgnoreCase(marke)){
+                print(auto);
+            }
+        }
+    }
+
+    private void filterBaujahr(){
+        System.out.println("Baujahr eingeben:");
+        while (!scanner.hasNextInt()){
+            System.out.println("Ungültige Eingabe!");
+            scanner.next();
+        }
+        int baujahr = scanner.nextInt();
+        scanner.nextLine(); // New line char vom input stream löschen
+        for(Auto auto : autos){
+            if(auto.getBaujahr() == baujahr){
+                print(auto);
+            }
+        }
+    }
+
     public void print(Auto auto){
         System.out.printf("%s %s, Baujahr %d Preis %f %n",
                 auto.getMarke(), auto.getModell(), auto.getBaujahr(), auto.getPreis());
