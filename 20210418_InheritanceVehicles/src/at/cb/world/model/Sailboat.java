@@ -12,9 +12,9 @@ public class Sailboat extends Boat{
     public void move(){
         if(boatStatus == BoatStatus.SUNK){
 
-        } else if(currentSpeed >= maxSpeed){
+        } else if(currentSpeedMs >= maxSpeedMs){
             boatStatus = BoatStatus.SUNK;
-            currentSpeed = 0;
+            currentSpeedMs = 0;
         } else {
             super.move();
         }

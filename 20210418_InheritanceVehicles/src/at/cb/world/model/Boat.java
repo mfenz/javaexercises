@@ -2,6 +2,8 @@ package at.cb.world.model;
 
 public class Boat extends Vehicle{
 
+    private double draft;
+
     protected enum BoatStatus {
         OK,
         SUNK,

@@ -4,47 +4,60 @@ public class Vehicle {
     protected String brand;
     protected String model;
     protected double acceleration0toMaxSpeedSec;
-    protected double maxSpeed;
-    protected double currentSpeed;
+    protected double maxSpeedMs;
+    protected double currentSpeedMs;
 
-    protected double currentDistance;
+    protected double currentDistanceMeter;
 
     public Vehicle(String brand, String model,
                    double acceleration0toMaxSpeedSec,
-                   double maxSpeed) {
+                   double maxSpeedKmh) {
         this.brand = brand;
         this.model = model;
         this.acceleration0toMaxSpeedSec = acceleration0toMaxSpeedSec;
-        this.maxSpeed = maxSpeed;
+        this.maxSpeedMs = kmPerHourToMetersPerSecond(maxSpeedKmh);
     }
 
     public String getInfo(){
-        return String.format("%10s %10s speed: %.2f km/h distance: %.2f", brand, model, currentSpeed, currentDistance);
+        return String.format("%-10s %-20s speed: %6.2f km/h distance: %6.2f m", brand, model,
+                metersPerSecondToKmPerHour(currentSpeedMs), currentDistanceMeter);
     }
 
     public void move() {
         // accelerate until maxSpeed is reached
         // calculate acceleration
-        double acceleration = maxSpeed / acceleration0toMaxSpeedSec;
+        double acceleration = maxSpeedMs / acceleration0toMaxSpeedSec;
         // accelerate
-        currentSpeed += acceleration;
+        currentSpeedMs += acceleration;
 
-        if (currentSpeed >= maxSpeed) {
+        if (currentSpeedMs >= maxSpeedMs) {
             // limit vehicle speed to maxSpeed
-            currentSpeed = maxSpeed;
+            currentSpeedMs = maxSpeedMs;
         }
-        currentDistance += currentSpeed;
+        currentDistanceMeter += currentSpeedMs;
     }
 
     public void draw() {
         System.out.println(getInfo());
+        for(int i = 0; i < getDistanceOffset(); i++){
+            System.out.print("_");
+        }
+        System.out.println();
     }
 
     public int getDistanceOffset(){
-        return (int)(currentDistance / 100);
+        return (int)(currentDistanceMeter / 100);
     }
 
-    public double getCurrentDistance() {
-        return currentDistance;
+    public double getCurrentDistanceMeter() {
+        return currentDistanceMeter;
+    }
+
+    public static double kmPerHourToMetersPerSecond(double kmph){
+        return kmph / 3.6;
+    }
+
+    public static double metersPerSecondToKmPerHour(double mph){
+        return mph * 3.6;
     }
 }
