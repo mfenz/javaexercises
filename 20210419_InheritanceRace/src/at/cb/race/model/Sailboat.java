@@ -11,6 +11,22 @@ public class Sailboat extends Boat{
 
     public void draw(){
         super.draw();
-        System.out.println(RaceUi.sailboatImage.indent(getDistanceOffset()));
+        if(boatStatus == BoatStatus.SUNK){
+            System.out.println(RaceUi.sailboatUpsideDownImage.indent(getDistanceOffset()));
+        } else {
+            System.out.println(RaceUi.sailboatImage.indent(getDistanceOffset()));
+        }
+
+    }
+
+    public void move(){
+        if(boatStatus == BoatStatus.SUNK){
+
+        } else if(currentSpeedMs >= maxSpeedMs){
+            boatStatus = BoatStatus.SUNK;
+            currentSpeedMs = 0;
+        } else {
+            super.move();
+        }
     }
 }
