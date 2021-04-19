@@ -3,6 +3,7 @@ package at.cb.race.model;
 import at.cb.race.ui.RaceUi;
 
 public class Car extends Vehicle{
+    // Konstruktor
     public Car(String brand, String model, double acceleration0toMaxSpeedSec,
                double maxSpeedKmh) {
         // super: ruft den Konstruktor der Parent-Klasse auf (hier Vehicle)
