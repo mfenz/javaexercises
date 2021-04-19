@@ -1,8 +1,11 @@
 package at.cb.race;
 
+import at.cb.race.bl.RaceBl;
+
 public class Race {
     public static void main(String[] args) {
-        String x = "x".indent(20);
-        System.out.println(x);
+        RaceBl bl = new RaceBl();
+        bl.addVehicles();
+        bl.startRace();
     }
 }

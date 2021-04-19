@@ -33,6 +33,16 @@ public class Vehicle {
         currentDistanceM += currentSpeedMs;
     }
 
+    public void draw(){
+        System.out.printf("%-10s%-10s %6.2f km/h Distanz: %6.2f m %n",
+                brand, model, convertMsToKmh(currentSpeedMs), currentDistanceM);
+    }
+
+    // Anzahl der Leerzeichen vor dem Bild
+    public int getDistanceOffset(){
+        return (int) (currentDistanceM / 100);
+    }
+
     public static double convertKmhToMs(double kmh){
         return kmh / 3.6;
     }
