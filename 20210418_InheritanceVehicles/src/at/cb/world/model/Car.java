@@ -18,7 +18,7 @@ public class Car extends Vehicle {
         int prob = random.nextInt(100 - 0) + 0;
         if (carStatus == CarStatus.ARRESTED) {
 
-        } else if (currentSpeedMs >= kmPerHourToMetersPerSecond(130) && prob <= 10) {
+        } else if (currentSpeedMs >= kmPerHourToMetersPerSecond(200) && prob <= 5) {
             carStatus = CarStatus.ARRESTED;
             currentSpeedMs = 0;
         } else {
