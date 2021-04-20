@@ -38,5 +38,8 @@ public class Variablen {
 
         System.out.println(buchstabe);
         System.out.println("Wert: " + zahl2 + " buchstabe=" + buchstabe);
+
+        // boolean: Wahrheitswert
+        boolean married = false; // true oder false
     }
 }
