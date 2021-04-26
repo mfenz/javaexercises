@@ -60,5 +60,12 @@ public class MalereiBl {
     public float calculateFarbMenge(){
         // Methode aufrufen, Rückgabewert speichern
         float flaeche = calculateGesamtFlaeche();
+        return LITER_FARBE_PRO_M2 * flaeche;
+    }
+
+    public void printBenoetigteFarbMenge(){
+        float farbMengeLiter = calculateFarbMenge();
+        System.out.printf("Wir empfehlen die Bestellung von" +
+                " %f l Farbe. %n", farbMengeLiter);
     }
 }
