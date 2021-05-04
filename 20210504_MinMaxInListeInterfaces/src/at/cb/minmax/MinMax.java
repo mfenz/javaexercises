@@ -1,5 +1,6 @@
 package at.cb.minmax;
 
+import at.cb.minmax.operations.MinMaxBetrunken;
 import at.cb.minmax.operations.MinMaxFinder;
 import at.cb.minmax.operations.MinMaxWithListSort;
 import at.cb.minmax.operations.MinMaxWithLoop;
@@ -28,7 +29,9 @@ public class MinMax {
             System.out.println("print - zeigt alle Zahlen an");
             System.out.println("loop - setzt Schleifen Interface");
             System.out.println("sort - setzt Sortieren Interface");
+            System.out.println("falsch - setzt falsch implementiertes Interface");
             System.out.println("minmax - findet min und max der Zahlen");
+            System.out.println("exit - Programm beenden");
 
             String input = scanner.nextLine();
             switch (input){
@@ -44,9 +47,15 @@ public class MinMax {
                 case "sort":
                     setSortImplementation();
                     break;
+                case "falsch":
+                    setWrongImplementation();
+                    break;
                 case "minmax":
                     findMinMaxValues();
                     break;
+                case "exit":
+                    System.out.println("Ciao!");
+                    System.exit(0);
             }
         }
     }
@@ -78,6 +87,11 @@ public class MinMax {
         // MinMaxWithListSort Implementierung wählen
         minMaxFinder = new MinMaxWithListSort();
         System.out.println("Implementierung mit Liste und Sortierung ausgewählt.");
+    }
+
+    private void setWrongImplementation(){
+        minMaxFinder = new MinMaxBetrunken();
+        System.out.println("Falsche Implementierung ausgewählt.");
     }
 
     private void findMinMaxValues(){
