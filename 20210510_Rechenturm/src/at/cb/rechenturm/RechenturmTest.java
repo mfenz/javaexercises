@@ -1,29 +1,28 @@
-package at.cb.trennlinien;
+package at.cb.rechenturm;
 
-import at.cb.trennlinien.model.Trennlinienmuster;
+import at.cb.rechenturm.model.Rechenturm;
 
 import java.util.Scanner;
 
-public class TrennlinienTest {
+public class RechenturmTest {
     public static void main(String[] args) {
-        // Scanner verbindet das Programm mit der Eingabe in der Konsole
+        // Objekt der Klasse RechenturmTest erzeugen
+        RechenturmTest rt = new RechenturmTest();
+        rt.doUserInput();
+    }
+
+    public void doUserInput(){
+        // Scanner für User-Eingabe
         Scanner scanner = new Scanner(System.in);
-
         // User sagen was zu tun ist
-        System.out.println("Anzahl der Zeilen eingeben:");
+        System.out.println("Bitte die Reihe eingeben:");
+        // Reihe von User eingeben lassen
+        int reihe = getNumber(scanner);
 
-        // Methode aufrufen (gibt die eingegebene Zahl zurück)
-        // Speichert das Ergebnis des Methodenaufrufs in Variable zeilen
-        int zeilen = getNumber(scanner);
-
-        System.out.println("Anzahl der Spalten eingeben:");
-        int spalten = getNumber(scanner);
-
-        // Objekt der Klasse Trennlinienmuster erzeugen und auf Var. muster speichern
-        Trennlinienmuster muster = new Trennlinienmuster(zeilen, spalten);
-        // Aufruf der Methode print() für Objekt muster
-        // variablenname punkt methodennamen()
-        muster.print();
+        // Neues Objekt der Klasse Rechenturm erzeugen
+        Rechenturm rechenturm = new Rechenturm(reihe);
+        // Rechenturm auf der Konsole ausgeben
+        rechenturm.print();
     }
 
     /**
@@ -35,7 +34,7 @@ public class TrennlinienTest {
      * @param scanner
      * @return
      */
-    public static int getNumber(Scanner scanner){
+    public int getNumber(Scanner scanner){
         // solange die Eingabe falsch ist, Eingabe wiederholen
         // Schleifenbedingung muss true sein, wenn die Eingabe falsch ist
         // scanner.hasNextInt() <-- true wenn Eingabe korrekt ist
@@ -54,5 +53,4 @@ public class TrennlinienTest {
         return eingabeZahl; // Gibt den Wert der Variable eingabeZahl zurück
         // return scanner.nextInt();
     }
-
 }
