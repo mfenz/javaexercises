@@ -1,0 +1,11 @@
+1.	Schreibe das Progamm “BspX_Trennlinien”. Zu Beginn soll die Anzahl der Zeichen (Breite) eingegeben werden.  Mit Hilfe einer Schleife soll folgende Ausgabe produziert werden (z. B. Eingabe 29, es sind immer sieben Zeilen auszugeben):
+
+Trennlinienmuster:
+
+- - - - - - - - - - - - - - -
+ - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - -
+ - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - -
+ - - - - - - - - - - - - - -
+- - - - - - - - - - - - - - -
