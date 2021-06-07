@@ -1,6 +1,7 @@
 package bl;
 
 import service.BlacklistService;
+import service.DatabaseBlacklistService;
 import service.FileBlacklistService;
 
 import java.util.ArrayList;
@@ -16,7 +17,8 @@ public class BlacklistBl {
     // Konstruktor
     public BlacklistBl(Scanner scanner){
         this.scanner = scanner;
-        blacklistService = new FileBlacklistService();
+//        blacklistService = new FileBlacklistService();
+        blacklistService = new DatabaseBlacklistService();
     }
 
     public void addBlacklistNames(){

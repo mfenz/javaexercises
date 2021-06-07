@@ -1,8 +1,10 @@
 service/BlacklistService.java
  service.BlacklistService
-bl/BlacklistBl.java
- bl.BlacklistBl
-Blacklist.java
- Blacklist
 service/FileBlacklistService.java
  service.FileBlacklistService
+Blacklist.java
+ Blacklist
+service/DatabaseBlacklistService.java
+ service.DatabaseBlacklistService
+bl/BlacklistBl.java
+ bl.BlacklistBl
