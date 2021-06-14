@@ -31,6 +31,8 @@ public class FileManager {
     }
 
     public void print(Datei datei){
+        System.out.println();
+        System.out.println("--------------------");
         /**
          * Name: img-123.jpg
          * Dateityp: jpg
@@ -40,7 +42,12 @@ public class FileManager {
         System.out.println("Name: " + dateiname);
 
         String typ = datei.getDateityp();
-        System.out.println("Dateityp: " + typ);
+        if(typ.equals("")){
+            System.out.println("Dateityp: Nicht vorhanden.");
+        } else {
+            System.out.println("Dateityp: " + typ);
+        }
+
 
         try {
             int id = datei.getId();

@@ -71,4 +71,14 @@ public class Datei {
     public String getName(){
         return name;
     }
+
+    /**
+     * Setter-Methoden verändern den Wert einer Instanzvariable
+     * @param name
+     */
+
+    public void setName(String name){
+        // setzt den Übergabeparameter auf die Instanzvariable
+        this.name = name;
+    }
 }
