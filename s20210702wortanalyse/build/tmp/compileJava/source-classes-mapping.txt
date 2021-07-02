@@ -1,6 +1,6 @@
 at/cb/s20210702wortanalyse/pdf/PdfReader.java
  at.cb.s20210702wortanalyse.pdf.PdfReader
-at/cb/s20210702wortanalyse/WortAnalyse.java
- at.cb.s20210702wortanalyse.WortAnalyse
 at/cb/s20210702wortanalyse/bl/WortAnalyseBl.java
  at.cb.s20210702wortanalyse.bl.WortAnalyseBl
+at/cb/s20210702wortanalyse/WortAnalyse.java
+ at.cb.s20210702wortanalyse.WortAnalyse
