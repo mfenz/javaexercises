@@ -5,9 +5,11 @@
  */
 package at.cb.kontaktformular.servlet;
 
+import at.cb.kontaktformular.model.Kontaktanfrage;
 import at.cb.kontaktformular.service.KontaktformularService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Optional;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -15,10 +17,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * Darstellung sowie Absenden des Kontaktformulars
  * @author mfenz
  */
-public class KontaktformularServlet extends HttpServlet {
+public class KontaktanfrageBearbeitenServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +38,10 @@ public class KontaktformularServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet KontaktformularServlet</title>");            
+            out.println("<title>Servlet KontaktanfrageBearbeitenServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet KontaktformularServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet KontaktanfrageBearbeitenServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,9 +59,21 @@ public class KontaktformularServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // die Anfrage an ein JSP zur Darstellung des Kontaktformulars weiterleiten
-        getServletContext().getRequestDispatcher("/kontaktformular.jsp").forward(request, response);
-        return;
+        // Aktuellen Datensatz aus der Datenbank laden
+        // GET-Parameter "id" <-- ID des zu bearbeitenden Eintrags
+        Optional<Kontaktanfrage> optionalKontaktanfrage = 
+                KontaktformularService.getKontaktanfrageById(Integer.parseInt(request.getParameter("id")));
+        if(optionalKontaktanfrage.isEmpty()){
+            // Eintrag mit der ID nicht gefunden! Auf Startseite weiterleiten
+            response.sendRedirect("./?error=true");
+            return;
+        }
+        
+        // Kontaktanfrage als Attribut in der Request setzen (für die Ausgabe)
+        request.setAttribute("kontaktanfrage", optionalKontaktanfrage.get());
+        getServletContext()
+                .getRequestDispatcher("/kontaktanfragebearbeiten.jsp")
+                .forward(request, response);
     }
 
     /**
@@ -74,11 +87,19 @@ public class KontaktformularServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        // wird aufgerufen wenn das Formular bearbeitet und abgeschickt wurde
+        
+        // Daten aus <form> einlesen
+        int id = Integer.parseInt(request.getParameter("id"));
         String name = request.getParameter("name");
         String nachricht = request.getParameter("nachricht");
-        int id = KontaktformularService.addKontaktanfrage(name, nachricht);
-        // Auf die Start-Seite weiterleiten
-        response.sendRedirect("./?id="+id);
+        
+        // Service zum Bearbeiten der Daten aufrufen
+        KontaktformularService.updateKontaktanfrage(id, name, nachricht);
+        
+        // Auf die Startseite weiterleiten
+        response.sendRedirect("./?bearbeitet=true");
+        return;
     }
 
     /**

@@ -15,10 +15,9 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
- * Darstellung sowie Absenden des Kontaktformulars
  * @author mfenz
  */
-public class KontaktformularServlet extends HttpServlet {
+public class KontaktanfrageLoeschenServlet extends HttpServlet {
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -37,10 +36,10 @@ public class KontaktformularServlet extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet KontaktformularServlet</title>");            
+            out.println("<title>Servlet KontaktanfrageLoeschenServlet</title>");            
             out.println("</head>");
             out.println("<body>");
-            out.println("<h1>Servlet KontaktformularServlet at " + request.getContextPath() + "</h1>");
+            out.println("<h1>Servlet KontaktanfrageLoeschenServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
             out.println("</html>");
         }
@@ -58,9 +57,7 @@ public class KontaktformularServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // die Anfrage an ein JSP zur Darstellung des Kontaktformulars weiterleiten
-        getServletContext().getRequestDispatcher("/kontaktformular.jsp").forward(request, response);
-        return;
+        processRequest(request, response);
     }
 
     /**
@@ -74,11 +71,21 @@ public class KontaktformularServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        String name = request.getParameter("name");
-        String nachricht = request.getParameter("nachricht");
-        int id = KontaktformularService.addKontaktanfrage(name, nachricht);
-        // Auf die Start-Seite weiterleiten
-        response.sendRedirect("./?id="+id);
+        
+        // Welcher Datensatz soll gelöscht werden? ID de Datensatzes einlesen
+        int id = Integer.parseInt(request.getParameter("id"));
+        
+        // Service mitteilen, welche Kontaktanfrage gelöscht werden soll
+        boolean success = KontaktformularService.deleteKontaktanfrage(id);
+        
+        if(success){
+            // weiterleiten auf Start
+            response.sendRedirect("./?removed=true");
+            return;
+        }
+        request.setAttribute("error", "Die Kontaktanfrage konnte nicht gelöscht werden.");
+        request.getRequestDispatcher("/kontaktanfragen.jsp").forward(request, response);
+        return;
     }
 
     /**

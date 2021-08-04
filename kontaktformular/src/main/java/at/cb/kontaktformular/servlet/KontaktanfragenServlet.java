@@ -17,6 +17,7 @@ import javax.servlet.http.HttpServletResponse;
 
 /**
  *
+ * Darstellung aller Kontaktanfragen
  * @author mfenz
  */
 public class KontaktanfragenServlet extends HttpServlet {

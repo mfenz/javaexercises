@@ -8,6 +8,18 @@
         <servlet-name>KontaktanfragenServlet</servlet-name>
         <servlet-class>at.cb.kontaktformular.servlet.KontaktanfragenServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>KontaktanfrageLoeschenServlet</servlet-name>
+        <servlet-class>at.cb.kontaktformular.servlet.KontaktanfrageLoeschenServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>KontaktanfrageBearbeitenServlet</servlet-name>
+        <servlet-class>at.cb.kontaktformular.servlet.KontaktanfrageBearbeitenServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>KontaktanfrageServlet</servlet-name>
+        <servlet-class>at.cb.kontaktformular.servlet.KontaktanfrageServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>KontaktformularServlet</servlet-name>
         <url-pattern>/kontaktformular</url-pattern>
@@ -15,6 +27,18 @@
     <servlet-mapping>
         <servlet-name>KontaktanfragenServlet</servlet-name>
         <url-pattern>/</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>KontaktanfrageLoeschenServlet</servlet-name>
+        <url-pattern>/loeschen</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>KontaktanfrageBearbeitenServlet</servlet-name>
+        <url-pattern>/bearbeiten</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>KontaktanfrageServlet</servlet-name>
+        <url-pattern>/kontaktanfrage</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

@@ -1,7 +1,10 @@
 C:\Users\mfenz\Documents\GitHub\javaexercises\kontaktformular\src\main\java\at\cb\kontaktformular\dao\DbConnection.java
+C:\Users\mfenz\Documents\GitHub\javaexercises\kontaktformular\src\main\java\at\cb\kontaktformular\servlet\KontaktanfrageServlet.java
+C:\Users\mfenz\Documents\GitHub\javaexercises\kontaktformular\src\main\java\at\cb\kontaktformular\servlet\KontaktanfrageBearbeitenServlet.java
 C:\Users\mfenz\Documents\GitHub\javaexercises\kontaktformular\src\main\java\at\cb\kontaktformular\servlet\KontaktanfragenServlet.java
 C:\Users\mfenz\Documents\GitHub\javaexercises\kontaktformular\src\main\java\at\cb\kontaktformular\servlet\KontaktformularServlet.java
 C:\Users\mfenz\Documents\GitHub\javaexercises\kontaktformular\src\main\java\at\cb\kontaktformular\dao\KontaktanfrageDAO.java
+C:\Users\mfenz\Documents\GitHub\javaexercises\kontaktformular\src\main\java\at\cb\kontaktformular\servlet\KontaktanfrageLoeschenServlet.java
 C:\Users\mfenz\Documents\GitHub\javaexercises\kontaktformular\src\main\java\at\cb\kontaktformular\service\KontaktformularService.java
 C:\Users\mfenz\Documents\GitHub\javaexercises\kontaktformular\src\main\java\at\cb\kontaktformular\dao\DAOException.java
 C:\Users\mfenz\Documents\GitHub\javaexercises\kontaktformular\src\main\java\at\cb\kontaktformular\model\Kontaktanfrage.java
