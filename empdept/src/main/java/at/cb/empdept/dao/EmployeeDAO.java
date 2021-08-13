@@ -1,8 +1,12 @@
 package at.cb.empdept.dao;
 
 import at.cb.empdept.model.Department;
+import at.cb.empdept.model.Employee;
 
 import java.sql.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Optional;
 
 public class EmployeeDAO {
     public static int createEmployee(String firstname, String lastname, float salary, Department department)
@@ -36,6 +40,38 @@ public class EmployeeDAO {
             }
             throw new DAOException("Create Employee: Es wurde kein Key generiert");
 
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+    }
+
+    /**
+     * Liest alle Employees aus der Datenbank aus
+     * @return
+     */
+    public static List<Employee> getEmployees(){
+        try(Connection connection = DbConnection.getConnection()){
+            Statement statement = connection.createStatement();
+            ResultSet rs = statement.executeQuery("SELECT *, d.id AS dId, e.id AS eId " +
+                    "FROM employee e INNER JOIN department d ON (e.department_id = d.id) ");
+            List<Employee> result = new ArrayList<>();
+
+            // über jeden Eintrag im ResultSet iterieren (jeweils ein Datensatz)
+            while (rs.next()){
+                int departmentId = rs.getInt("dId");
+                String departmentName = rs.getString("name");
+                Department department = new Department(departmentId, departmentName);
+
+                int employeeId = rs.getInt("eId");
+                String firstname = rs.getString("firstname");
+                String lastname = rs.getString("lastname");
+                float salary = rs.getFloat("salary");
+
+                Employee employee = new Employee(employeeId, firstname, lastname, salary, department);
+                result.add(employee);
+            }
+
+            return result;
         } catch (SQLException e) {
             throw new DAOException(e);
         }

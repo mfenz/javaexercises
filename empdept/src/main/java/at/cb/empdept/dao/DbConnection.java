@@ -15,7 +15,7 @@ public class DbConnection {
         config.setUsername("root");
         config.setPassword("");
         config.addDataSourceProperty("cachePrepStmts", "true");
-        config.addDataSourceProperty("prepStmtCacheSize", "250");
+        config.addDataSourceProperty("prepStmtCacheSize", "100");
         config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
         config.setDriverClassName("com.mysql.cj.jdbc.Driver");
         config.setMaximumPoolSize(5);

@@ -2,8 +2,13 @@ package at.cb.empdept.service;
 
 import at.cb.empdept.dao.DepartmentDAO;
 import at.cb.empdept.dao.EmployeeDAO;
+import at.cb.empdept.dao.EmployeeInProjectDAO;
+import at.cb.empdept.dao.ProjectDAO;
 import at.cb.empdept.model.Department;
+import at.cb.empdept.model.Employee;
+import at.cb.empdept.model.Project;
 
+import java.time.Instant;
 import java.util.List;
 import java.util.Optional;
 
@@ -31,5 +36,17 @@ public class CompanyService {
                     department);
         }
         throw new ServiceInputException("Department nicht gefunden");
+    }
+
+    public static List<Employee> getEmployees(){
+        return EmployeeDAO.getEmployees();
+    }
+
+    public static List<Project> getProjects(){
+        return ProjectDAO.getProjects();
+    }
+
+    public static void createEmployeeInProject(int employeeId, int projectId, Instant start, Instant end){
+        EmployeeInProjectDAO.createEmployeeInProjectDAO(employeeId, projectId, start, end);
     }
 }
