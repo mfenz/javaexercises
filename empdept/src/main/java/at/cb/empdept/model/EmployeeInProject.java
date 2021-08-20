@@ -1,6 +1,8 @@
 package at.cb.empdept.model;
 
+import java.time.Duration;
 import java.time.Instant;
+import java.time.temporal.ChronoUnit;
 
 public class EmployeeInProject {
     private Employee employee;
@@ -14,6 +16,11 @@ public class EmployeeInProject {
         this.project = project;
         this.start = start;
         this.end = end;
+    }
+
+    public long getDuration(){
+        long between = ChronoUnit.HOURS.between(start, end);
+        return between;
     }
 
     public Employee getEmployee() {
