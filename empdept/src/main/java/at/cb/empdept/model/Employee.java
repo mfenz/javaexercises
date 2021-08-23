@@ -1,5 +1,7 @@
 package at.cb.empdept.model;
 
+import java.util.Objects;
+
 public class Employee {
     private int id;
     private String firstname;
@@ -54,5 +56,20 @@ public class Employee {
 
     public void setDepartment(Department department) {
         this.department = department;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Employee employee = (Employee) o;
+        return id == employee.id && Float.compare(employee.salary, salary) == 0 && Objects.equals(firstname,
+                employee.firstname) && Objects.equals(lastname, employee.lastname) && Objects.equals(department,
+                employee.department);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, firstname, lastname, salary, department);
     }
 }

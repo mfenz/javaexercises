@@ -16,6 +16,7 @@
     <li><a href="./createdepartment">Create department</a></li>
     <li><a href="./createemployee">Create employee</a></li>
     <li><a href="./addtime">Add project time</a></li>
+    <li><a href="./statistics">Statistics</a></li>
 </ul>
 
 </body>

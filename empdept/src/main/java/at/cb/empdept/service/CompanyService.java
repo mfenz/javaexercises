@@ -12,6 +12,7 @@ import at.cb.empdept.model.Project;
 import java.time.Instant;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -89,5 +90,29 @@ public class CompanyService {
                 .collect(Collectors.toList());
 
         return result;
+    }
+
+    // Alle Mitarbeiter, gruppiert nach Abteilung
+    public static Map<Department, List<Employee>> getEmployeesByDepartment(){
+        List<Employee> employees = getEmployees();
+
+        Map<Department, List<Employee>> collect = employees.stream()
+                //.filter(employee -> employee.getSalary() > 5000f)
+                .collect(Collectors.groupingBy(Employee::getDepartment));
+        return collect;
+    }
+
+    // Die Summe der Gehälter aller Mitarbeiter, gruppiert nach Abteilung
+    public static Map<Department, Double> getSalariesByDepartment(){
+        List<Employee> employees = getEmployees();
+        Map<Department, Double> collect = employees.stream()
+                .collect(Collectors
+                        .groupingBy(
+                                Employee::getDepartment,
+                                Collectors.summingDouble(value -> value.getSalary()
+                                )
+                        )
+                );
+        return collect;
     }
 }
