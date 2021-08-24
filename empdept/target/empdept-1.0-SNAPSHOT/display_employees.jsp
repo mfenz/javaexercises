@@ -21,6 +21,8 @@
             <th>Last name</th>
             <th>Salary</th>
             <th>Department</th>
+            <th>Delete</th>
+            <th>Edit</th>
         </tr>
     </thead>
     <tbody>
@@ -32,6 +34,16 @@
                 <td><a href="./employee?id=${emp.id}">${emp.lastname}</a></td>
                 <td>${emp.salary}</td>
                 <td>${emp.department.name}</td>
+                <td>
+                    <form action="./deleteemployee" method="post">
+                        <!-- Emp ID als Hidden-Input mitschicken -->
+                        <input type="hidden" name="employeeId" value="${emp.id}">
+                        <button name="btdelete">Delete</button>
+                    </form>
+                </td>
+                <td>
+                    <button><a href="./editemployee">Edit</a></button>
+                </td>
             </tr>
         </c:forEach>
     </tbody>

@@ -100,6 +100,18 @@ public class EmployeeDAO {
         }
     }
 
+    public static boolean deleteEmployee(int id){
+        try (Connection connection = DbConnection.getConnection()){
+            Statement statement = connection.createStatement();
+            int rowCount = statement.executeUpdate("" +
+                    "DELETE FROM employee " +
+                    "WHERE id = " + id);
+            return rowCount > 0;
+        } catch (SQLException e){
+            throw new DAOException(e);
+        }
+    }
+
     private static Employee map(ResultSet rs) throws SQLException {
         int departmentId = rs.getInt("dId");
         String departmentName = rs.getString("name");

@@ -25,6 +25,15 @@ public class CompanyService {
         return DepartmentDAO.getDepartments();
     }
 
+    /**
+     * Legt
+     * @param firstname
+     * @param lastname
+     * @param salary
+     * @param departmentId
+     * @return
+     * @throws ServiceInputException
+     */
     public static int createEmployee(String firstname, String lastname,
                                      float salary,
                                      int departmentId) throws ServiceInputException {
@@ -114,5 +123,9 @@ public class CompanyService {
                         )
                 );
         return collect;
+    }
+
+    public static boolean deleteEmployee(int id){
+        return EmployeeDAO.deleteEmployee(id);
     }
 }
