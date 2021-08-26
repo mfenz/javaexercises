@@ -42,7 +42,7 @@
                     </form>
                 </td>
                 <td>
-                    <button><a href="./editemployee">Edit</a></button>
+                    <button><a href="./editemployee?id=${emp.id}">Edit</a></button>
                 </td>
             </tr>
         </c:forEach>

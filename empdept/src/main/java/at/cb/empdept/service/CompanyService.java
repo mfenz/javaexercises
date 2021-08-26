@@ -128,4 +128,15 @@ public class CompanyService {
     public static boolean deleteEmployee(int id){
         return EmployeeDAO.deleteEmployee(id);
     }
+
+    public static Optional<Department> getDepartmentById(int id){
+        return getDepartments()
+                .stream()
+                .filter(department -> department.getId() == id)
+                .findAny();
+    }
+
+    public static boolean editEmployee(Employee employee){
+        return EmployeeDAO.editEmployee(employee);
+    }
 }

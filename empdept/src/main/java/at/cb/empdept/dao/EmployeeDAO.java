@@ -112,6 +112,25 @@ public class EmployeeDAO {
         }
     }
 
+    public static boolean editEmployee(Employee emp){
+        try(Connection connection = DbConnection.getConnection()){
+            PreparedStatement ps = connection.prepareStatement("UPDATE employee " +
+                    "SET firstname = ?, lastname = ?, salary = ?, department_id = ? " +
+                    "WHERE id = ? ");
+
+            ps.setString(1, emp.getFirstname());
+            ps.setString(2, emp.getLastname());
+            ps.setFloat(3, emp.getSalary());
+            ps.setInt(4, emp.getDepartment().getId());
+            ps.setInt(5, emp.getId());
+
+            int rowCount = ps.executeUpdate();
+            return rowCount > 0 ? true : false;
+        } catch (SQLException e) {
+            throw new DAOException(e);
+        }
+    }
+
     private static Employee map(ResultSet rs) throws SQLException {
         int departmentId = rs.getInt("dId");
         String departmentName = rs.getString("name");

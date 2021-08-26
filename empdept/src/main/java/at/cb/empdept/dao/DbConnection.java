@@ -11,9 +11,9 @@ public class DbConnection {
     private static HikariDataSource ds;
 
     static {
-        config.setJdbcUrl("jdbc:mysql://localhost:3306/employeedepartment");
+        config.setJdbcUrl("jdbc:mysql://192.168.64.3:3306/employeedepartment");
         config.setUsername("root");
-        config.setPassword("");
+        config.setPassword("123456");
         config.addDataSourceProperty("cachePrepStmts", "true");
         config.addDataSourceProperty("prepStmtCacheSize", "100");
         config.addDataSourceProperty("prepStmtCacheSqlLimit", "2048");
