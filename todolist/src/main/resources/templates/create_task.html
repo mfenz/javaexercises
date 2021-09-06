@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create Task</title>
+</head>
+<body>
+<h1>Create Task</h1>
+<form th:action="@{/tasks/create}" method="POST" th:object="${taskData}">
+    <div>
+        <label for="name">Name:</label><br/>
+        <input type="text" id="name" name="name" th:field="*{name}">
+        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+    </div>
+    <!-- HTML Select zur Auswahl des Users -->
+    <div>
+        <label for="user">User:</label><br/>
+        <select id="user" th:field="*{user}">
+            <!-- Für jeden User ein <option> einfügen -->
+            <option th:each="user : ${users}"
+                    th:value="${user.id}"
+                    th:text="${user.name}">
+
+            </option>
+        </select>
+    </div>
+    <div>
+        <label for="deadline">Deadline:</label><br/>
+        <input type="text" id="deadline" name="deadline" th:field="*{deadline}">
+        <p th:if="${#fields.hasErrors('deadline')}" th:errors="*{deadline}"></p>
+    </div>
+    <div>
+        <label for="done">Erledigt:</label><br/>
+        <input type="checkbox" id="done" name="done" th:field="*{done}">
+        <p th:if="${#fields.hasErrors('done')}" th:errors="*{done}"></p>
+    </div>
+    <div>
+        <button name="btsubmit">Speichern</button>
+    </div>
+</form>
+</body>
+</html>
