@@ -6,5 +6,9 @@
 </head>
 <body>
 <h1>To Do List</h1>
+<th:block th:each="r, iter:${#authentication.getAuthorities()}">
+    <span th:text="${r}"></span>
+    <th:block th:if="${!iter.last}">, </th:block>
+</th:block>
 </body>
 </html>
