@@ -1,0 +1,28 @@
+package at.cb.cms.model;
+
+import lombok.Data;
+
+import javax.persistence.*;
+import java.util.List;
+
+@Data
+@Entity(name = "users")
+public class User {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int id;
+
+    private String name;
+    private String email;
+    private String password;
+
+    @ManyToMany
+    @JoinTable(
+            name = "user_has_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_name")
+    )
+    private List<Role> roles;
+    @OneToMany(mappedBy = "author")
+    private List<Article> articles;
+}
