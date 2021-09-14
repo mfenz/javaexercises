@@ -16,7 +16,7 @@ public class User {
     private String email;
     private String password;
 
-    @ManyToMany
+    @ManyToMany(fetch = FetchType.EAGER)
     @JoinTable(
             name = "user_has_role",
             joinColumns = @JoinColumn(name = "user_id"),
@@ -25,4 +25,15 @@ public class User {
     private List<Role> roles;
     @OneToMany(mappedBy = "author")
     private List<Article> articles;
+
+    public User() {
+    }
+
+    public User(String name, String email, String password,
+                List<Role> roles) {
+        this.name = name;
+        this.email = email;
+        this.password = password;
+        this.roles = roles;
+    }
 }

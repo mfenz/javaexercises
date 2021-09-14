@@ -17,4 +17,7 @@ public class Role {
 
     @ManyToMany(mappedBy = "roles") // wurde bereits in Variable "roles" definiert
     private List<User> users;
+
+    public Role() {
+    }
 }

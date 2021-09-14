@@ -18,4 +18,7 @@ public class Category {
     private String name;
     @ManyToMany(mappedBy = "categories")
     private List<Article> articles;
+
+    public Category() {
+    }
 }

@@ -10,8 +10,21 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         // Welche Bereiche der Anwendung werden geschützt?
 
+        /**
+         * - auf Bereiche die mit /admin/ beginnen dürfen nur Admins zugreifen
+         */
+        http
+                .authorizeRequests()
+                .antMatchers("/admin/**").hasRole("ADMIN")
+                .anyRequest().permitAll()
+                .and()
+                .formLogin() // Login-Formular aktivieren
+                .defaultSuccessUrl("/?loggedin=true") // wohin soll ich nach erfolgter Anmeldung weiterleiten?
+                .and()
+                .logout(); // Logout aktivieren
+
         //http.authorizeRequests().antMatchers()
         // --> alle Zugriffe zulassen (ohne Login)
-        http.authorizeRequests().anyRequest().permitAll();
+//        http.authorizeRequests().anyRequest().permitAll();
     }
 }

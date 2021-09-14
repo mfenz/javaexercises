@@ -10,14 +10,17 @@
     <div>
         <label for="name">Name: </label>
         <input type="text" id="name" th:field="*{name}">
+        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
     </div>
     <div>
         <label for="email">Email: </label>
         <input type="email" id="email" th:field="*{email}">
+        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
     </div>
     <div>
         <label for="password">Password: </label>
         <input type="password" id="password" th:field="*{password}">
+        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
     </div>
     <div>
         <button name="btsubmit">Register</button>
