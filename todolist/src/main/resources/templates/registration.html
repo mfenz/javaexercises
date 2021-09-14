@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Registration</title>
+</head>
+<body>
+<h1>Registration</h1>
+<!-- th: Präfix für Thymeleaf template engine -->
+<form th:action="@{/registration}" method="POST" th:object="${registrationData}">
+    <div>
+        <label for="name">Name:</label><br/>
+        <input type="text" id="name" name="name" th:field="*{name}">
+        <p th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+    </div>
+    <div>
+        <label for="email">E-Mail:</label><br/>
+        <input type="text" id="email" name="email" th:field="*{email}">
+        <p th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+    </div>
+    <div>
+        <label for="password">Password:</label><br/>
+        <input type="password" id="password" name="password" th:field="*{password}">
+        <p th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+    </div>
+    <div>
+        <button name="btsubmit">Registrieren</button>
+    </div>
+</form>
+</body>
+</html>

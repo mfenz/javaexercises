@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Tasks</title>
+</head>
+<body>
+<h1>Tasks</h1>
+<p>
+  <a th:href="@{/tasks/create}">Task erstellen</a>
+</p>
+<table>
+    <thead>
+    <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>User</th>
+        <th>Deadline</th>
+        <th>Done</th>
+        <th>Edit</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="task: ${tasks}">
+        <td th:text="${task.id}"></td>
+        <td th:text="${task.name}"></td>
+        <!-- (5) Hansi -->
+        <td th:text="${'(' + task.user.id + ') ' + task.user.name}"></td>
+        <td th:text="${task.deadline}"></td>
+        <td th:text="${task.done ? 'done' : 'in progress'}"></td>
+        <!-- /tasks/{taskId}/ -->
+        <td><a th:href="@{/tasks/{taskId}/(taskId=${task.id})}">Edit</a></td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
