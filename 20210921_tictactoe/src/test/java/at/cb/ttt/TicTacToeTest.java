@@ -108,4 +108,47 @@ class TicTacToeTest {
         assertEquals("Winner O", ticTacToe.play(2, 3)); // O
     }
 
+    @Test
+    @DisplayName("Spieler X gewinnt diagonal")
+    public void spielerXGewinntDiagonal(){
+        assertEquals("No winner", ticTacToe.play(1, 1)); // X
+        assertEquals("No winner", ticTacToe.play(3, 1)); // O
+
+        assertEquals("No winner", ticTacToe.play(2, 2)); // X
+        assertEquals("No winner", ticTacToe.play(3, 2)); // Y
+
+        assertEquals("Winner X", ticTacToe.play(3, 3)); // X
+    }
+
+    @Test
+    @DisplayName("Spieler O gewinnt diagonal")
+    public void spielerOGewinntDiagonal(){
+        assertEquals("No winner", ticTacToe.play(1, 1)); // X
+        assertEquals("No winner", ticTacToe.play(3, 1)); // O
+
+        assertEquals("No winner", ticTacToe.play(1, 2)); // X
+        assertEquals("No winner", ticTacToe.play(2, 2)); // O
+
+        assertEquals("No winner", ticTacToe.play(2, 1)); // X
+        assertEquals("Winner O", ticTacToe.play(1, 3)); // O
+    }
+
+    @Test
+    @DisplayName("Unentschieden wenn alle Spielfelder belegt sind")
+    public void unentschiedenWennAlleSpielfelderBelegtSind(){
+        assertEquals("No winner", ticTacToe.play(1, 1)); // X
+        assertEquals("No winner", ticTacToe.play(2, 1)); // O
+
+        assertEquals("No winner", ticTacToe.play(3, 1)); // X
+        assertEquals("No winner", ticTacToe.play(3, 2)); // O
+
+        assertEquals("No winner", ticTacToe.play(1, 2)); // X
+        assertEquals("No winner", ticTacToe.play(1, 3)); // O
+
+        assertEquals("No winner", ticTacToe.play(2, 2)); // X
+        assertEquals("No winner", ticTacToe.play(3, 3)); // O
+
+        assertEquals("Draw", ticTacToe.play(2, 3)); // X
+    }
+
 }
