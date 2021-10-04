@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Register</title>
+    <link rel="stylesheet/less" type="text/css" th:href="@{/css/style.less}" />
+    <script src="https://cdn.jsdelivr.net/npm/less@4.1.1" ></script>
+    <!--<link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">-->
+</head>
+<body>
+
+<header th:replace="fragments/header :: header"></header>
+<main class="center">
+    <h1>Registrieren</h1>
+    <form th:action="@{/register}" method="POST" th:object="${registrationData}">
+        <p class="field-error" th:if="${#fields.hasGlobalErrors()}" th:errors="*{global}"></p>
+        <div>
+            <label for="email">Email</label><br/>
+            <input type="email" id="email" th:field="*{email}">
+            <p class="field-error" th:if="${#fields.hasErrors('email')}" th:errors="*{email}"></p>
+        </div>
+        <div>
+            <label for="password">Password</label><br/>
+            <input type="password" id="password" th:field="*{password}">
+            <p class="field-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+        </div>
+        <div>
+            <label for="name">Name</label><br/>
+            <input type="text" id="name" th:field="*{name}">
+            <p class="field-error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+        </div>
+        <div>
+            <button name="btsubmit">Registrieren</button>
+        </div>
+
+    </form>
+</main>
+<footer th:replace="fragments/footer :: footer"></footer>
+
+</body>
+</html>

@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -72,6 +73,13 @@ public class ArticleService {
             throw new ServiceException("Artikel nicht gefunden");
         }
         return article;
+    }
+
+    public List<Article> getArticles(){
+        return articleRepository.findAll()
+                .stream()
+                .sorted((Article o1, Article o2) -> o2.getPublicationDate().compareTo(o1.getPublicationDate()))
+                .collect(Collectors.toList());
     }
 
 }

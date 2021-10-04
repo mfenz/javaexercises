@@ -10,7 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 @RequiredArgsConstructor
@@ -66,6 +68,13 @@ public class UserService {
         if(!password.matches(".*\\d.*")){
             throw new ServiceException("Passwort muss mindestens eine Zahl enthalten");
         }
+    }
+
+    public List<User> getUsers(){
+        return userRepository.findAll()
+                .stream()
+                .sorted(Comparator.comparing(User::getName))
+                .collect(Collectors.toList());
     }
 
 }

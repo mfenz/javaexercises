@@ -13,6 +13,7 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.assertj.core.api.Assertions.*;
@@ -23,6 +24,13 @@ class UserServiceTest {
     private UserRepository userRepository;
     private BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
     private RoleRepository roleRepository;
+
+    private User manfred = new User(1, "manfred@email.com", bCryptPasswordEncoder.encode("123456"),
+            "Manfred", List.of());
+    private User susi = new User(2, "susi@email.com", bCryptPasswordEncoder.encode("123456"),
+            "Susi", List.of());
+    private User berta = new User(3, "berta@email.com", bCryptPasswordEncoder.encode("123456"),
+            "Berta", List.of());
 
     @BeforeEach
     public void initBeforeEach(){
@@ -132,6 +140,18 @@ class UserServiceTest {
         List<Role> roles = user.getRoles();
         assertEquals(1, roles.size());
         assertEquals("USER", roles.get(0).getName());
+    }
+
+    @Test
+    public void ladeAlleUserSortiertNachName(){
+        Mockito.doReturn(List.of(manfred, susi, berta))
+                .when(userRepository).findAll();
+
+        List<User> users = userService.getUsers();
+
+        List<String> names = users.stream().map(user -> user.getName()).collect(Collectors.toList());
+
+        assertEquals(List.of("Berta", "Manfred", "Susi"), names);
     }
 
 }

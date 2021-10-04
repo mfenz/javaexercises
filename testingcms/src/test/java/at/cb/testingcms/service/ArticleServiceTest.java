@@ -163,4 +163,18 @@ class ArticleServiceTest {
         assertThat(serviceException).hasMessage("Artikel nicht gefunden");
     }
 
+    @Test
+    public void ladeAlleArtikelSortiertNachPublicationDate(){
+        Mockito.doReturn(List.of(derErste, derZweite, derDritte))
+                .when(articleRepository).findAll();
+
+        List<Article> articles = articleService.getArticles();
+        List<String> titles = articles
+                .stream()
+                .map(article -> article.getTitle())
+                .collect(Collectors.toList());
+
+        assertEquals(List.of("Der Dritte", "Der Zweite", "Der Erste"), titles);
+    }
+
 }

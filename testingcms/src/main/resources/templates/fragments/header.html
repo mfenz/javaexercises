@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<header class="center" th:fragment="header">
+  <div>
+    <a th:href="@{/}"><img id="header-image" th:src="@{/img/InfLogoPos.jpg}"></a>
+  </div>
+  <nav>
+    <ul>
+      <li><a th:href="@{/register}">Registrieren</a></li>
+      <li><a th:href="@{/admin}">Administrator</a></li>
+      <li><a th:href="@{/login}">Login</a></li>
+      <li><a th:href="@{/logout}">Logout</a></li>
+    </ul>
+  </nav>
+</header>
+
+</body>
+</html>

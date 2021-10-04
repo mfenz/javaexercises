@@ -1,0 +1,14 @@
+.
+
+header {
+    display: flex;
+}
+
+header nav ul li {
+    float: left;
+    list-style-type: none;
+}
+
+header nav ul li a {
+    text-decoration: none;
+}
