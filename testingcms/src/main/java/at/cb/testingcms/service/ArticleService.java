@@ -82,4 +82,27 @@ public class ArticleService {
                 .collect(Collectors.toList());
     }
 
+    public Article getArticle(int id){
+        return articleRepository
+                .findById(id)
+                .orElseThrow(() -> new ServiceException("Artikel nicht gefunden"));
+    }
+
+    public Article editArticle(ArticleData articleData){
+        // Bestehenden Artikel laden
+        Article article = articleRepository.findById(articleData.getId())
+                .orElseThrow(() -> new ServiceException("Artikel nicht gefunden"));
+
+        article.setAuthor(articleData.getAuthor());
+        article.setCategories(articleData.getCategories());
+        article.setContent(articleData.getContent());
+        article.setPublished(articleData.isPublished());
+        article.setPublicationDate(articleData.getPublicationDate());
+        article.setSlug(articleData.getSlug());
+        article.setTitle(articleData.getTitle());
+
+        article = articleRepository.save(article);
+        return article;
+    }
+
 }

@@ -16,11 +16,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 // Login aktivieren
                 .and()
                 .formLogin()
+                .loginPage("/login") // wo ist die Login-Seite?
                 // Logout aktivieren
                 .and()
-                .logout();
+                .logout()
+                .logoutSuccessUrl("/");
                 // Remember me (Optional zum Angemeldet bleiben)
                 //.and()
-                //.rememberMe();
+                //.rememberMe().;
     }
 }

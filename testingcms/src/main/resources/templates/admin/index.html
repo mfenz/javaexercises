@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin</title>
+    <link rel="stylesheet/less" type="text/css" th:href="@{/css/style.less}" />
+    <script src="https://cdn.jsdelivr.net/npm/less@4.1.1" ></script>
+    <!--<link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">-->
+</head>
+<body>
+
+<header th:replace="fragments/header :: header"></header>
+<main class="center">
+    <h1>Administrator Übersicht</h1>
+    <ul>
+        <li><a th:href="@{/admin/articles}">Artikel-Übersicht</a></li>
+        <li><a th:href="@{/admin/articles/create}">Artikel erstellen</a></li>
+    </ul>
+</main>
+<footer th:replace="fragments/footer :: footer"></footer>
+
+</body>
+</html>

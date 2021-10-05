@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Artikel</title>
+    <link rel="stylesheet/less" type="text/css" th:href="@{/css/style.less}" />
+    <script src="https://cdn.jsdelivr.net/npm/less@4.1.1" ></script>
+    <!--<link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">-->
+</head>
+<body>
+
+<header th:replace="fragments/header :: header"></header>
+<main class="center">
+    <h1>Artikel</h1>
+    <p><a th:href="@{/admin/articles/create}">Artikel erstellen</a></p>
+    <div th:each="article : ${articles}">
+        <h2 th:text="${article.title}"></h2>
+        <p>
+            <a th:href="@{/admin/articles/{id}(id=${article.id})}">Bearbeiten</a>
+        </p>
+    </div>
+</main>
+<footer th:replace="fragments/footer :: footer"></footer>
+
+</body>
+</html>

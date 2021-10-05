@@ -1,5 +1,6 @@
 package at.cb.testingcms.controller;
 
+import at.cb.testingcms.formdata.LoginData;
 import at.cb.testingcms.formdata.RegistrationData;
 import at.cb.testingcms.model.User;
 import at.cb.testingcms.service.ServiceException;
@@ -41,5 +42,17 @@ public class UserController {
             bindingResult.reject("registration_error", e.getMessage());
         }
         return displayRegistrationGet(registrationData);
+    }
+
+    @GetMapping("/login")
+    public String displayLoginGet(
+            LoginData loginData
+    ){
+        return "login";
+    }
+
+    @GetMapping("/logout")
+    public String displayLogoutGet(){
+        return "logout";
     }
 }

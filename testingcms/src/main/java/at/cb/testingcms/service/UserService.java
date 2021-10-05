@@ -77,4 +77,8 @@ public class UserService {
                 .collect(Collectors.toList());
     }
 
+    public User getUser(int id){
+        return userRepository.findById(id).get();
+    }
+
 }

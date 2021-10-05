@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Artikel</title>
+    <link rel="stylesheet/less" type="text/css" th:href="@{/css/style.less}" />
+    <script src="https://cdn.jsdelivr.net/npm/less@4.1.1" ></script>
+    <!--<link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">-->
+</head>
+<body>
+
+<header th:replace="fragments/header :: header"></header>
+<main class="center">
+    <h1>Artikel</h1>
+    <form th:action="@{/admin/articles/save}" method="POST" th:object="${articleData}">
+        <p class="field-error" th:if="${#fields.hasGlobalErrors()}" th:errors="*{global}"></p>
+        <div>
+            <label for="title">Titel</label><br/>
+            <input type="text" id="title" th:field="*{title}">
+            <p class="field-error" th:if="${#fields.hasErrors('title')}" th:errors="*{title}"></p>
+        </div>
+        <div>
+            <label for="content">Inhalt</label><br/>
+            <textarea id="content" th:field="*{content}"></textarea>
+            <p class="field-error" th:if="${#fields.hasErrors('content')}" th:errors="*{content}"></p>
+        </div>
+        <div>
+            <label for="publicationDate">Veröffentlichungsdatum (tt.mm.jjjj hh:mm)</label><br/>
+            <input type="text" id="publicationDate" th:field="*{publicationDate}">
+            <p class="field-error" th:if="${#fields.hasErrors('publicationDate')}" th:errors="*{publicationDate}"></p>
+        </div>
+        <div>
+            <label for="published">Veröffentlicht</label><br/>
+            <input type="checkbox" id="published" th:field="*{published}">
+            <p class="field-error" th:if="${#fields.hasErrors('published')}" th:errors="*{published}"></p>
+        </div>
+        <div>
+            <label for="slug">Slug</label><br/>
+            <input type="text" id="slug" th:field="*{slug}">
+            <p class="field-error" th:if="${#fields.hasErrors('slug')}" th:errors="*{slug}"></p>
+        </div>
+        <div>
+            <label for="author">Author</label><br/>
+            <select id="author" th:field="*{author}">
+                <option th:each="user : ${users}" th:value="${user.id}" th:text="${user.name}"></option>
+            </select>
+            <p class="field-error" th:if="${#fields.hasErrors('author')}" th:errors="*{author}"></p>
+        </div>
+        <div>
+            <th:block th:each="category : ${categories}">
+                <input th:id="${'category_' + category.id}" type="checkbox" th:field="*{categories}">
+                <label th:for="${'category_' + category.id}" th:text="${category.name}"></label><br>
+            </th:block>
+        </div>
+        <div>
+            <button name="btsubmit">Speichern</button>
+        </div>
+    </form>
+</main>
+<footer th:replace="fragments/footer :: footer"></footer>
+
+</body>
+</html>

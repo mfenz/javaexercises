@@ -5,6 +5,8 @@ import at.cb.testingcms.repository.CategoryRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 @RequiredArgsConstructor
 public class CategoryService {
@@ -31,5 +33,9 @@ public class CategoryService {
         if(name.length() > 50){
             throw new ServiceException("Der Name muss zwischen 1 und 50 Zeichen sein");
         }
+    }
+
+    public List<Category> getCategories(){
+        return categoryRepository.findAll();
     }
 }

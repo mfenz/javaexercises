@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet/less" type="text/css" th:href="@{/css/style.less}" />
+    <script src="https://cdn.jsdelivr.net/npm/less@4.1.1" ></script>
+    <!--<link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">-->
+</head>
+<body>
+
+<header th:replace="fragments/header :: header"></header>
+<main class="center">
+    <h1>Login</h1>
+    <form th:action="@{/login}" method="POST" th:object="${loginData}">
+        <p class="field-error" th:if="${#fields.hasGlobalErrors()}" th:errors="*{global}"></p>
+        <div>
+            <label for="email">Email</label><br/>
+            <input type="email" id="email" th:field="*{username}">
+            <p class="field-error" th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></p>
+        </div>
+        <div>
+            <label for="password">Password</label><br/>
+            <input type="password" id="password" th:field="*{password}">
+            <p class="field-error" th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></p>
+        </div>
+        <div>
+            <label for="remember-me">Remember me</label><br/>
+            <input type="checkbox" id="remember-me" name="remember-me">
+        </div>
+        <div>
+            <button name="btsubmit">Login</button>
+        </div>
+
+    </form>
+</main>
+<footer th:replace="fragments/footer :: footer"></footer>
+
+</body>
+</html>
