@@ -14,24 +14,24 @@ import static org.junit.jupiter.api.Assertions.*;
 
 //@SpringBootTest()
 //@ExtendWith(SpringExtension.class)
-@WebMvcTest(controllers = UserController.class)
+//@WebMvcTest(controllers = UserController.class)
 class UserControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
-
-    @Test
-    public void registrierenGetErfordertOkAntwort() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/register"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.view().name("register"));
-    }
-
-    @Test
-    public void loginGetErfordertOkAntwort() throws Exception {
-        mockMvc.perform(MockMvcRequestBuilders.get("/login"))
-                .andExpect(MockMvcResultMatchers.status().isOk())
-                .andExpect(MockMvcResultMatchers.view().name("login"));
-    }
+//    @Autowired
+//    private MockMvc mockMvc;
+//
+//    @Test
+//    public void registrierenGetErfordertOkAntwort() throws Exception {
+//        mockMvc.perform(MockMvcRequestBuilders.get("/register"))
+//                .andExpect(MockMvcResultMatchers.status().isOk())
+//                .andExpect(MockMvcResultMatchers.view().name("register"));
+//    }
+//
+//    @Test
+//    public void loginGetErfordertOkAntwort() throws Exception {
+//        mockMvc.perform(MockMvcRequestBuilders.get("/login"))
+//                .andExpect(MockMvcResultMatchers.status().isOk())
+//                .andExpect(MockMvcResultMatchers.view().name("login"));
+//    }
 
 }

@@ -51,7 +51,7 @@
         </div>
         <div>
             <th:block th:each="category : ${categories}">
-                <input th:id="${'category_' + category.id}" type="checkbox" th:field="*{categories}">
+                <input th:value="${category.id}" th:id="${'category_' + category.id}" type="checkbox" th:field="*{categories}">
                 <label th:for="${'category_' + category.id}" th:text="${category.name}"></label><br>
             </th:block>
         </div>

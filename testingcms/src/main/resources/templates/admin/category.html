@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Kategorie</title>
+    <link rel="stylesheet/less" type="text/css" th:href="@{/css/style.less}" />
+    <script src="https://cdn.jsdelivr.net/npm/less@4.1.1" ></script>
+    <!--<link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">-->
+</head>
+<body>
+
+<header th:replace="fragments/header :: header"></header>
+<main class="center">
+    <h1>Kategorie</h1>
+    <form th:action="@{/admin/categories/save}" method="POST" th:object="${categoryData}">
+        <input type="hidden" th:field="*{id}">
+        <p class="field-error" th:if="${#fields.hasGlobalErrors()}" th:errors="*{global}"></p>
+        <div>
+            <label for="name">Name</label><br/>
+            <input type="text" id="name" th:field="*{name}">
+            <p class="field-error" th:if="${#fields.hasErrors('name')}" th:errors="*{name}"></p>
+        </div>
+        <div>
+            <button name="btsubmit">Speichern</button>
+        </div>
+    </form>
+</main>
+<footer th:replace="fragments/footer :: footer"></footer>
+
+</body>
+</html>
