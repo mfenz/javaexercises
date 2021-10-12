@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Informatik macht Spaß!</title>
+    <link rel="stylesheet/less" type="text/css" th:href="@{/css/style.less}" />
+    <script src="https://cdn.jsdelivr.net/npm/less@4.1.1" ></script>
+    <!--<link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}">
+    <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">-->
+</head>
+<body>
+
+<header th:replace="fragments/header :: header"></header>
+<main class="center">
+    <article>
+        <h1 th:text="${article.title}">Artikel-Titel</h1>
+        <div th:remove="tag" th:utext="${article.content}"></div>
+        <div id="article-info">
+            <p>
+                Geschrieben von <span th:text="${article.author.name}"></span>
+                am <span th:text="${#temporals.format(article.publicationDate, 'd. MMMM yyyy HH:mm')}"></span>.
+            </p>
+        </div>
+    </article>
+
+
+</main>
+<footer th:replace="fragments/footer :: footer"></footer>
+
+</body>
+</html>

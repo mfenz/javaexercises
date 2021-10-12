@@ -7,6 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/less@4.1.1" ></script>
     <!--<link rel="stylesheet" type="text/css" th:href="@{/css/normalize.css}">
     <link rel="stylesheet" type="text/css" th:href="@{/css/style.css}">-->
+    <script src="https://cdn.ckeditor.com/ckeditor5/30.0.0/classic/ckeditor.js"></script>
 </head>
 <body>
 
@@ -14,6 +15,7 @@
 <main class="center">
     <h1>Artikel</h1>
     <form th:action="@{/admin/articles/save}" method="POST" th:object="${articleData}">
+        <input type="hidden" th:field="*{id}">
         <p class="field-error" th:if="${#fields.hasGlobalErrors()}" th:errors="*{global}"></p>
         <div>
             <label for="title">Titel</label><br/>
@@ -60,5 +62,12 @@
 </main>
 <footer th:replace="fragments/footer :: footer"></footer>
 
+<script>
+    ClassicEditor
+        .create( document.querySelector( '#content' ) )
+        .catch( error => {
+            console.error( error );
+        } );
+</script>
 </body>
 </html>

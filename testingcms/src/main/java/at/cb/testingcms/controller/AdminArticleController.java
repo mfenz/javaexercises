@@ -96,12 +96,12 @@ public class AdminArticleController {
             Model model
     ){
         Article article = articleService.getArticle(id);
-        System.out.println(article);
+        /*System.out.println(article);
         if(articleData.getId() == 0){
 
-        }
+        }*/
         articleData.set(article);
-        System.out.println(articleData);
+        //System.out.println(articleData);
         return createArticleGet(articleData, model);
     }
 
