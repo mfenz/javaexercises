@@ -14,7 +14,15 @@
 
 <!-- Inhalt der Seite -->
 <main class="center-wrapper">
-    <h1>Start</h1>
+    <h1>Immobilie: ${immo.id}</h1>
+
+    <form enctype="multipart/form-data" action="./admin-immo" method="POST">
+        <div>
+            Datei wählen:
+            <input type="file" name="file">
+        </div>
+        <button name="btupload">Upload</button>
+    </form>
 </main>
 
 </body>

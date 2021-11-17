@@ -14,7 +14,10 @@
 
 <!-- Inhalt der Seite -->
 <main class="center-wrapper">
-    <h1>Start</h1>
+    <h1>Admin Startseite</h1>
+    <ul>
+        <li><a href="./admin-immobilien">Immobilien Übersicht</a></li>
+    </ul>
 </main>
 
 </body>
