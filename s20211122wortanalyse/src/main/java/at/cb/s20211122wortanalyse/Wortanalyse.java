@@ -16,7 +16,9 @@ public class Wortanalyse {
             bl.init();
             bl.removePunctuationMarks();
             //bl.printWordsWithoutDuplicates();
-            bl.printWordsInAThatAreNotInB();
+            //bl.printWordsInAThatAreNotInB();
+//            bl.removeWordsBeginningOrEndingWithA();
+            bl.countWords();
         } catch (IOException e){
             e.printStackTrace();
         }

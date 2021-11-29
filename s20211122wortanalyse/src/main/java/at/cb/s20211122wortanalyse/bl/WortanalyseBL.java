@@ -5,9 +5,7 @@ import at.cb.s20211122wortanalyse.pdf.PdfReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.URL;
-import java.util.Arrays;
-import java.util.Set;
-import java.util.TreeSet;
+import java.util.*;
 import java.util.stream.Collectors;
 
 public class WortanalyseBL {
@@ -104,6 +102,58 @@ public class WortanalyseBL {
         Set<String> result = new TreeSet<>();
         result.addAll(wordsA);
         result.addAll(wordsB);
+    }
+
+    public void removeWordsBeginningOrEndingWithA(){
+        System.out.println("--- remove words beginning or ending with a ---");
+        Set<String> words = contentToSet(contentA);
+
+        // Zum Löschen während dem Iterieren wird ein Iterator benötigt
+        Iterator<String> iter = words.iterator();
+
+        // Jedes Element im Set ansehen
+        while (iter.hasNext()){
+            // Element aus dem Set holen
+            String word = iter.next();
+
+            if(word.startsWith("a") || word.startsWith("A") || word.endsWith("a") || word.endsWith("A")){
+                // Wort aus der Collection löschen
+                iter.remove();
+            }
+        }
+
+        for(String word : words){
+            System.out.println(word);
+        }
+    }
+
+    public void countWords(){
+        // Wie oft kommt jedes Wort im Dokument vor?
+        // --> Zähle die Häufigkeit der Wörter
+
+        String[] words = contentA.split(" ");
+
+        // String Key: Wort
+        // Integer Value: Anzahl
+        Map<String, Integer> wordOccurences = new HashMap<>();
+
+        for(String word : words){
+            word = word.toLowerCase();
+
+            // Wie oft ist "word" bisher vorgekommen, falls noch nie --> 0
+            int count = wordOccurences.getOrDefault(word, 0);
+
+            count++;
+
+            // Neuen count in die Map geben
+            wordOccurences.put(word, count);
+        }
+
+        wordOccurences.entrySet()
+                .stream()
+                .sorted(Map.Entry.comparingByValue())
+                .forEach(System.out::println);
+
     }
 
 }
