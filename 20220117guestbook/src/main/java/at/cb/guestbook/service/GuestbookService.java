@@ -6,7 +6,19 @@ import at.cb.guestbook.servlet.GuestbookServlet;
 
 import java.util.List;
 
+/**
+ *
+ */
 public class GuestbookService {
+
+    /**
+     * Erstellt einen Gästebucheintrag
+     * @param name Name der Person
+     * @param email Email der Person
+     * @param text Nachricht für Gästebucheintrag
+     * @return int id des erstellten Gästebucheintrags
+     * @throws ServiceException bei falschen Eingabewerten
+     */
     public static int createGuestbookEntry(String name, String email, String text) throws ServiceException {
         // Parameterüberprüfung
         if(name.isBlank()){
@@ -30,6 +42,10 @@ public class GuestbookService {
         return id;
     }
 
+    /**
+     *
+     * @return
+     */
     public static List<GuestbookEntry> getGuestbookEntries(){
         return GuestbookEntryDao.getGuestbookEntries();
     }
