@@ -1,5 +1,10 @@
 package at.cb.kfzteile.model;
 
+/**
+ * USER
+ * ADMIN
+ * INTERESSENT
+ */
 public class Rolle {
     private int id;
     private String name;

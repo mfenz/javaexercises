@@ -9,7 +9,7 @@ public class Benutzer {
     private String nachname;
     private String email;
     private String passwort;
-    private int warengruppeId;
+    private Optional<Integer> warengruppeId;
 
     private List<Rolle> rollen;
     private Optional<Interessent> interessent;
@@ -20,7 +20,7 @@ public class Benutzer {
     public Benutzer() {
     }
 
-    public Benutzer(int id, String vorname, String nachname, String email, String passwort, int warengruppeId, List<Rolle> rollen, Optional<Interessent> interessent) {
+    public Benutzer(int id, String vorname, String nachname, String email, String passwort, Optional<Integer> warengruppeId, List<Rolle> rollen, Optional<Interessent> interessent) {
         this.id = id;
         this.vorname = vorname;
         this.nachname = nachname;
@@ -29,6 +29,21 @@ public class Benutzer {
         this.warengruppeId = warengruppeId;
         this.rollen = rollen;
         this.interessent = interessent;
+    }
+
+    public boolean isAdmin(){
+//        for(int i = 0; i < rollen.size(); i++){
+//            if(rollen.get(i).getId() == 1){
+//                return true;
+//            }
+//        }
+
+        for(Rolle rolle : rollen){
+            if(rolle.getId() == 1){
+                return true;
+            }
+        }
+        return false;
     }
 
     public int getId() {
@@ -71,11 +86,11 @@ public class Benutzer {
         this.passwort = passwort;
     }
 
-    public int getWarengruppeId() {
+    public Optional<Integer> getWarengruppeId() {
         return warengruppeId;
     }
 
-    public void setWarengruppeId(int warengruppeId) {
+    public void setWarengruppeId(Optional<Integer> warengruppeId) {
         this.warengruppeId = warengruppeId;
     }
 
