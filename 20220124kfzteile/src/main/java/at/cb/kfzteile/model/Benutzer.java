@@ -46,6 +46,24 @@ public class Benutzer {
         return false;
     }
 
+    public boolean isMitarbeiter(){
+        for(Rolle rolle : rollen){
+            if(rolle.getId() == 2){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean isInteressent(){
+        for(Rolle rolle : rollen){
+            if(rolle.getId() == 3){
+                return true;
+            }
+        }
+        return false;
+    }
+
     public int getId() {
         return id;
     }

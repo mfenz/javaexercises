@@ -12,10 +12,11 @@ public class Warengruppe {
     public Warengruppe() {
     }
 
-    public Warengruppe(int id, Benutzer leiter, String bezeichnung) {
+    public Warengruppe(int id, Benutzer leiter, String bezeichnung, List<Dokument> dokumente) {
         this.id = id;
         this.leiter = leiter;
         this.bezeichnung = bezeichnung;
+        this.dokumente = dokumente;
     }
 
     public int getId() {

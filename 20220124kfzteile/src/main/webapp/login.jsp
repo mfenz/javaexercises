@@ -13,9 +13,9 @@
             <p><strong>Fehler: ${error}</strong></p>
         </c:forEach>
         <label for="email">Email:</label><br>
-        <input type="email" name="email" id="email"><br>
+        <input type="email" name="email" id="email" value="interessent3@email.com"><br>
         <label for="passwort">Passwort:</label><br>
-        <input type="password" name="passwort" id="passwort"><br>
+        <input type="password" name="passwort" id="passwort" value="123456"><br>
         <button name="btsubmit">Login</button>
     </form>
 </body>

@@ -1,13 +1,16 @@
 package at.cb.kfzteile.service;
 
 import at.cb.kfzteile.dao.BenutzerDao;
+import at.cb.kfzteile.dao.InteressentenDao;
 import at.cb.kfzteile.dao.RollenDao;
 import at.cb.kfzteile.model.Benutzer;
 import at.cb.kfzteile.model.Rolle;
 import org.mindrot.jbcrypt.BCrypt;
 
 import javax.servlet.http.HttpSession;
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 public class BenutzerService {
 
@@ -17,7 +20,12 @@ public class BenutzerService {
      * @return benutzerId die ID des neuen Benutzers
      */
     public static int createBenutzer(Benutzer benutzer){
+        // Benutzer speichern
         int userId = BenutzerDao.createBenutzer(benutzer);
+        // Interessent speichern?
+        if(benutzer.getInteressent().isPresent()){
+            InteressentenDao.createInteressent(userId, benutzer.getInteressent().get());
+        }
         // Rolle speichern
         for(Rolle rolle : benutzer.getRollen()){
             RollenDao.createBenutzerRolle(userId, rolle.getId());
@@ -25,8 +33,65 @@ public class BenutzerService {
         return userId;
     }
 
+    public static void updateBenutzer(Benutzer benutzer){
+        // Benutzern update
+        BenutzerDao.updateBenutzer(benutzer);
+
+        // Interessent löschen
+        InteressentenDao.deleteInteressentByBenutzerId(benutzer.getId());
+
+        // Interessent speichern?
+        if(benutzer.getInteressent().isPresent()){
+            InteressentenDao.createInteressent(benutzer.getId(), benutzer.getInteressent().get());
+        }
+
+        // Rollen löschen
+        RollenService.deleteBenutzerRollenByBenutzerId(benutzer.getId());
+
+        // Rolle speichern
+        for(Rolle rolle : benutzer.getRollen()){
+            RollenDao.createBenutzerRolle(benutzer.getId(), rolle.getId());
+        }
+    }
+
+    public static void updatePasswort(int benutzerId, String neuesPasswort){
+        BenutzerDao.updatePasswort(benutzerId, neuesPasswort);
+    }
+
     public static Optional<Benutzer> getBenutzerById(int benutzerId){
         return BenutzerDao.getBenutzerById(benutzerId);
+    }
+
+    public static List<Benutzer> getBenutzer(){
+        return BenutzerDao.getBenutzer();
+    }
+
+    public static List<Benutzer> getMitarbeiter(){
+        return BenutzerDao.getBenutzer()
+                .stream()
+                .filter(benutzer -> {
+                    // Mitarbeiter filtern
+                    for(Rolle rolle : benutzer.getRollen()){
+                        if(rolle.getId() == 2){
+                            return true;
+                        }
+                    }
+                    return false;
+                }).collect(Collectors.toList());
+    }
+
+    public static List<Benutzer> getAdministratoren(){
+        return BenutzerDao.getBenutzer()
+                .stream()
+                .filter(benutzer -> {
+                    // Administrator filtern
+                    for(Rolle rolle : benutzer.getRollen()){
+                        if(rolle.getId() == 1){
+                            return true;
+                        }
+                    }
+                    return false;
+                }).collect(Collectors.toList());
     }
 
     /**

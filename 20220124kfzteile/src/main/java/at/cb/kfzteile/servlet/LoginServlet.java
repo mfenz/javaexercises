@@ -11,11 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
-@WebServlet(name = "LoginServlet", value = "/")
+@WebServlet(name = "LoginServlet", value = "")
 public class LoginServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // IP des Users
+        System.out.println(request.getRequestURI().substring(request.getContextPath().length()));
         String ip = request.getRemoteAddr();
 
         // Browser des Users
@@ -43,11 +44,11 @@ public class LoginServlet extends HttpServlet {
 
             // wenn Benutzer admin ist, in den Admin-Bereich weiterleiten
             if(benutzer.isAdmin()){
-                response.sendRedirect("./admin");
+                response.sendRedirect("./admin/");
                 return; // immer nach response.sendRedirect!!!
             } else {
                 // oder sonst in den Benutzerbereich weiterleiten
-                response.sendRedirect("./benutzer");
+                response.sendRedirect("./benutzer/");
                 return; // immer nach response.sendRedirect!!!
             }
         } else {

@@ -19,7 +19,8 @@ public class DbConnection {
      */
     protected static Connection getConnection() throws SQLException {
         try {
-            Class.forName("com.mysql.jdbc.Driver");
+            //Class.forName("com.mysql.jdbc.Driver");
+            Class.forName("com.mysql.cj.jdbc.Driver");
             String url = String.format("jdbc:mysql://%s:3306/%s", DB_HOST, DB_NAME);
             Connection con = DriverManager.getConnection(url, DB_USER, DB_PASSWORD);
             return con;

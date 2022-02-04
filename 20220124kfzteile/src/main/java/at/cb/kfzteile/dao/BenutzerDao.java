@@ -150,4 +150,100 @@ public class BenutzerDao {
             throw new DaoException(e);
         }
     }
+
+    public static List<Benutzer> getBenutzer(){
+        try(Connection con = DbConnection.getConnection()){
+            // für den Benutzer brauche ich ...
+            // Rollen
+            // Interessent
+
+            PreparedStatement ps = con.prepareStatement("" +
+                    "SELECT * " +
+                    "FROM benutzer " +
+                    "");
+
+            ResultSet rs = ps.executeQuery();
+            List<Benutzer> benutzerListe = new ArrayList<>();
+            while (rs.next()){
+
+                Optional<Integer> warengruppeId;
+                if(rs.getInt("warengruppe_id") == 0){
+                    warengruppeId = Optional.empty();
+                } else {
+                    warengruppeId = Optional.of(rs.getInt("warengruppe_id"));
+                }
+
+                // Rollen laden
+                List<Rolle> rollen = RollenDao.getBenutzerRollen(rs.getInt("id"));
+
+                // Interessent laden
+                Optional<Interessent> interessent = InteressentenDao.getInteressentByBenutzerId(rs.getInt("id"));
+
+                Benutzer benutzer = new Benutzer(
+                        rs.getInt("id"),
+                        rs.getString("vorname"),
+                        rs.getString("nachname"),
+                        rs.getString("email"),
+                        rs.getString("passwort"),
+                        warengruppeId,
+                        rollen,
+                        interessent
+                );
+                benutzerListe.add(benutzer);
+            }
+            return benutzerListe;
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    public static void updateBenutzer(Benutzer benutzer){
+        try(Connection con = DbConnection.getConnection()){
+
+            String passwordHash = BCrypt.hashpw(benutzer.getPasswort(), BCrypt.gensalt());
+
+            PreparedStatement ps = con.prepareStatement("" +
+                    "UPDATE benutzer " +
+                    "SET vorname = ?, " +
+                    "nachname = ?, " +
+                    "email = ?, " +
+                    "passwort = ?, " +
+                    "warengruppe_id = ? " +
+                    "WHERE id = ? ");
+            ps.setString(1, benutzer.getVorname());
+            ps.setString(2, benutzer.getNachname());
+            ps.setString(3, benutzer.getEmail());
+            ps.setString(4, passwordHash);
+            if(benutzer.getWarengruppeId().isPresent()){
+                ps.setInt(5, benutzer.getWarengruppeId().get());
+            } else {
+                ps.setNull(5, Types.NULL);
+            }
+            ps.setInt(6, benutzer.getId());
+
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
+
+    /**
+     * Ändert das Passwort des Benutzers.
+     * @param benutzerId Benutzer ID
+     * @param neuesPasswort das neue Passwort in Plaintext
+     */
+    public static void updatePasswort(int benutzerId, String neuesPasswort){
+        try(Connection con = DbConnection.getConnection()){
+            String passwordHash = BCrypt.hashpw(neuesPasswort, BCrypt.gensalt());
+            PreparedStatement ps = con.prepareStatement("" +
+                    "UPDATE benutzer " +
+                    "SET passwort = ? " +
+                    "WHERE id = ?");
+            ps.setString(1, passwordHash);
+            ps.setInt(2, benutzerId);
+            ps.executeUpdate();
+        } catch (SQLException e) {
+            throw new DaoException(e);
+        }
+    }
 }
